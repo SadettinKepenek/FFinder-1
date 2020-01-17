@@ -9,6 +9,7 @@ using FFinder.BLL.Abstract;
 using FFinder.BLL.Validators.User;
 using FFinder.Core.Authentication;
 using FFinder.Core.DataTransferObjects.User;
+using FFinder.Core.Exception;
 using FFinder.Entity.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -41,7 +42,7 @@ namespace FFinder.BLL.Concrete
                 var validationResult = validator.Validate(dto);
                 if (!validationResult.IsValid)
                 {
-                    throw new Exception(validationResult.ToString());
+                    throw new ValidationException(validationResult.ToString());
                 }
 
                 //
@@ -81,7 +82,7 @@ namespace FFinder.BLL.Concrete
                 var validationResult = validator.Validate(userAddModel);
                 if (!validationResult.IsValid)
                 {
-                    throw new Exception(validationResult.ToString());
+                    throw new ValidationException(validationResult.ToString());
                 }
 
                 var identityUser = new AuthIdentityUser()
@@ -127,7 +128,7 @@ namespace FFinder.BLL.Concrete
                 var validationResult = validator.Validate(userUpdateModel);
                 if (!validationResult.IsValid)
                 {
-                    throw new Exception(validationResult.ToString());
+                    throw new ValidationException(validationResult.ToString());
                 }
 
                 var user = _userManager.FindByNameAsync(userUpdateModel.UserName).Result;
