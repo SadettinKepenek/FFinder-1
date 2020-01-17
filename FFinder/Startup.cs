@@ -138,7 +138,7 @@ namespace FFinder
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapControllerRoute("default", "api/{controller=Users}/{action=Get}/{id?}");
+                //endpoints.MapControllerRoute("default", "api/{controller=Users}/{action=Get}/{id?}");
             });
         }
     }
