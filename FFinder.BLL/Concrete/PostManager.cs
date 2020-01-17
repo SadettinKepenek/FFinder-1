@@ -48,8 +48,8 @@ namespace FFinder.BLL.Concrete
                 {
                     throw new NullReferenceException("id null olamaz");
                 }
-                var mappedPost = _mapper.Map<Post>(id);
-                _postRepository.Delete(mappedPost);
+
+                _postRepository.Delete(new Post{PostId = id });
             }
             catch (Exception e)
             {
