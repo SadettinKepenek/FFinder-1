@@ -28,7 +28,7 @@ namespace FFinder.BLL.Concrete
         private IHttpContextAccessor _httpContext;
         private IMapper _mapper;
 
-        public AuthManager(UserManager<AuthIdentityUser> userManager, SignInManager<AuthIdentityUser> signInManager, IPasswordHasher<AuthIdentityUser> passwordHasher, IHttpContextAccessor httpContext, IMapper mapper, RoleManager<AuthIdentityUser> roleManager)
+        public AuthManager(UserManager<AuthIdentityUser> userManager, SignInManager<AuthIdentityUser> signInManager, IPasswordHasher<AuthIdentityUser> passwordHasher, IHttpContextAccessor httpContext, IMapper mapper, RoleManager<AuthIdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
