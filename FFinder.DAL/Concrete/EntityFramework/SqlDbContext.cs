@@ -34,7 +34,7 @@ namespace FFinder.DAL.Concrete.EntityFramework
                     b.Property(e => e.Firstname).IsRequired().HasMaxLength(100);
                     b.Property(e => e.Lastname).IsRequired().HasMaxLength(100);
                     b.Property(e => e.Town).IsRequired().HasMaxLength(100);
-                    b.Property(e => e.City).IsRequired().HasMaxLength(100);
+                    b.Property(e => e.City).IsRequired().HasMaxLength(100); 
                     b.Property(e => e.Country).IsRequired().HasMaxLength(100);
                     b.Property(e => e.IsActive).HasDefaultValueSql("0");
             
