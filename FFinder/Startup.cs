@@ -40,6 +40,21 @@ namespace FFinder
 
         public void ConfigureServices(IServiceCollection services)
         {
+           
+
+
+
+
+            services.AddDbContext<SqlDbContext>(opt =>
+            {
+                opt.UseSqlServer(
+                    Configuration.GetConnectionString("FFinder"), b => b.MigrationsAssembly("FFinder"));
+            });
+
+            services.AddIdentity<AuthIdentityUser, AuthIdentityRole>(options => { })
+                .AddEntityFrameworkStores<SqlDbContext>().AddDefaultTokenProviders();
+
+
             services.AddControllers().AddNewtonsoftJson(opt =>
             {
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -63,35 +78,23 @@ namespace FFinder
 
             #region Injections
 
-            services.AddSingleton<ICommentDal, EfCommentRepository>();
-            services.AddSingleton<ICommentRateDal, EfCommentRateRepository>();
-            services.AddSingleton<IFollowerRepository, EfFollowerRepository>();
-            services.AddSingleton<IPostRateRepository, EfPostRateRepository>();
-            services.AddSingleton<IPostRepository, EfPostRepository>();
+            services.AddScoped<ICommentDal, EfCommentRepository>();
+            services.AddScoped<ICommentRateDal, EfCommentRateRepository>();
+            services.AddScoped<IFollowerRepository, EfFollowerRepository>();
+            services.AddScoped<IPostRateRepository, EfPostRateRepository>();
+            services.AddScoped<IPostRepository, EfPostRepository>();
 
-            services.AddSingleton<IAuthService, AuthManager>();
-            services.AddSingleton<ICommentRateService, CommentRateManager>();
-            services.AddSingleton<ICommentService,CommentManager >();
-            services.AddSingleton<IFollowerService, FollowerManager>();
-            services.AddSingleton<IPostRateService, PostRateManager>();
-            services.AddSingleton<IPostService, PostManager>();
+            services.AddScoped<IAuthService, AuthManager>();
+            services.AddScoped<ICommentRateService, CommentRateManager>();
+            services.AddScoped<ICommentService, CommentManager>();
+            services.AddScoped<IFollowerService, FollowerManager>();
+            services.AddScoped<IPostRateService, PostRateManager>();
+            services.AddScoped<IPostService, PostManager>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+            services.AddScoped<IPasswordHasher<AuthIdentityUser>, PasswordHasher<AuthIdentityUser>>();
 
 
             #endregion
-
-
-
-
-            services.AddDbContext<SqlDbContext>(opt =>
-            {
-                opt.UseSqlServer(
-                    Configuration.GetConnectionString("FFinder"), b => b.MigrationsAssembly("FFinder"));
-            });
-
-            services.AddIdentity<AuthIdentityUser, AuthIdentityRole>(options => { })
-                .AddEntityFrameworkStores<SqlDbContext>().AddDefaultTokenProviders();
 
             var key = Encoding.ASCII.GetBytes(Core.Authentication.TokenBase.SecretKey);
 
@@ -127,7 +130,7 @@ namespace FFinder
             app.UseHttpsRedirection();
             app.UseAuthentication();
 
-
+            
             app.UseRouting();
 
             app.UseAuthorization();

@@ -22,6 +22,8 @@ namespace FFinder.Controllers
             _authService = authService;
         }
 
+        [HttpPost("Login")]
+
         public async Task<IActionResult> Login(UserLoginRequestDto model)
         {
             HttpResponseModel responseModel;
@@ -48,7 +50,7 @@ namespace FFinder.Controllers
                 return BadRequest(responseModel);
             }
         }
-
+        [HttpPost("Register")]
         public async Task<IActionResult> Register(UserAddDto userAddDto)
         {
             HttpResponseModel responseModel;
