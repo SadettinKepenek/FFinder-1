@@ -14,6 +14,6 @@ namespace FFinder.Core.DataTransferObjects.Post
         public string OwnerId { get; set; }
         public virtual AuthIdentityUser Owner { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<PostRate> Rates { get; set; }
+        public virtual ICollection<Entity.Concrete.PostRate> Rates { get; set; }
     }
 }
