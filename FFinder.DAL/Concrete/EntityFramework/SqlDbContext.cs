@@ -19,6 +19,14 @@ namespace FFinder.DAL.Concrete.EntityFramework
         {
         }
 
+        public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<CommentRate> CommentRates { get; set; }
+        public virtual DbSet<Follower> Followers { get; set; }
+        public virtual DbSet<PostRate> PostRates { get; set; }
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AuthIdentityUser>(b =>
