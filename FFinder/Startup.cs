@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using FFinder.BLL.Abstract;
+using FFinder.BLL.Concrete;
 using FFinder.Core.Authentication;
 using FFinder.Core.DAL;
+using FFinder.DAL.Abstract;
 using FFinder.DAL.Concrete.EntityFramework;
 using FFinder.Entity.Concrete;
 using FFinder.MappingProfiles;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +40,21 @@ namespace FFinder
 
         public void ConfigureServices(IServiceCollection services)
         {
+           
+
+
+
+
+            services.AddDbContext<SqlDbContext>(opt =>
+            {
+                opt.UseSqlServer(
+                    Configuration.GetConnectionString("FFinder"), b => b.MigrationsAssembly("FFinder"));
+            });
+
+            services.AddIdentity<AuthIdentityUser, AuthIdentityRole>(options => { })
+                .AddEntityFrameworkStores<SqlDbContext>().AddDefaultTokenProviders();
+
+
             services.AddControllers().AddNewtonsoftJson(opt =>
             {
                 opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -56,14 +75,26 @@ namespace FFinder
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            services.AddDbContext<SqlDbContext>(opt =>
-            {
-                opt.UseSqlServer(
-                    Configuration.GetConnectionString("FFinder"), b => b.MigrationsAssembly("FFinder"));
-            });
 
-            services.AddIdentity<AuthIdentityUser, AuthIdentityRole>(options => { })
-                .AddEntityFrameworkStores<SqlDbContext>().AddDefaultTokenProviders();
+            #region Injections
+
+            services.AddScoped<ICommentDal, EfCommentRepository>();
+            services.AddScoped<ICommentRateDal, EfCommentRateRepository>();
+            services.AddScoped<IFollowerRepository, EfFollowerRepository>();
+            services.AddScoped<IPostRateRepository, EfPostRateRepository>();
+            services.AddScoped<IPostRepository, EfPostRepository>();
+
+            services.AddScoped<IAuthService, AuthManager>();
+            services.AddScoped<ICommentRateService, CommentRateManager>();
+            services.AddScoped<ICommentService, CommentManager>();
+            services.AddScoped<IFollowerService, FollowerManager>();
+            services.AddScoped<IPostRateService, PostRateManager>();
+            services.AddScoped<IPostService, PostManager>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IPasswordHasher<AuthIdentityUser>, PasswordHasher<AuthIdentityUser>>();
+
+
+            #endregion
 
             var key = Encoding.ASCII.GetBytes(Core.Authentication.TokenBase.SecretKey);
 
@@ -99,7 +130,7 @@ namespace FFinder
             app.UseHttpsRedirection();
             app.UseAuthentication();
 
-
+            
             app.UseRouting();
 
             app.UseAuthorization();

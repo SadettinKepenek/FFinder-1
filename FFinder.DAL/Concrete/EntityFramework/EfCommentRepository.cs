@@ -17,8 +17,8 @@ namespace FFinder.DAL.Concrete.EntityFramework
             using SqlDbContext context = new SqlDbContext();
 
             return filter == null ?
-           context.Comments.Include(x => x.Rates).Include(x => x.Post).ThenInclude(y => y.Owner).FirstOrDefault() :
-            context.Comments.Include(x => x.Rates).Include(x => x.Post).ThenInclude(y => y.Owner).Where(filter).FirstOrDefault();
+           context.Comment.Include(x => x.Rates).Include(x => x.Post).ThenInclude(y => y.Owner).FirstOrDefault() :
+            context.Comment.Include(x => x.Rates).Include(x => x.Post).ThenInclude(y => y.Owner).Where(filter).FirstOrDefault();
 
             
         }
@@ -26,8 +26,8 @@ namespace FFinder.DAL.Concrete.EntityFramework
         {
             using SqlDbContext context = new SqlDbContext();
             return filter == null ?
-                context.Comments.Include(x => x.Rates).Include(x => x.Post).ThenInclude(y => y.Owner).ToList() :
-                 context.Comments.Include(x => x.Rates).Include(x => x.Post).ThenInclude(y => y.Owner).Where(filter).ToList();
+                context.Comment.Include(x => x.Rates).Include(x => x.Post).ThenInclude(y => y.Owner).ToList() :
+                 context.Comment.Include(x => x.Rates).Include(x => x.Post).ThenInclude(y => y.Owner).Where(filter).ToList();
         }
     }
 }

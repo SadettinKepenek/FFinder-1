@@ -23,17 +23,19 @@ namespace FFinder.BLL.Concrete
     {
         private readonly UserManager<AuthIdentityUser> _userManager;
         private readonly SignInManager<AuthIdentityUser> _signInManager;
+        private readonly RoleManager<AuthIdentityRole> _roleManager;
         private readonly IPasswordHasher<AuthIdentityUser> _passwordHasher;
         private IHttpContextAccessor _httpContext;
         private IMapper _mapper;
 
-        public AuthManager(UserManager<AuthIdentityUser> userManager, SignInManager<AuthIdentityUser> signInManager, IPasswordHasher<AuthIdentityUser> passwordHasher, IHttpContextAccessor httpContext, IMapper mapper)
+        public AuthManager(UserManager<AuthIdentityUser> userManager, SignInManager<AuthIdentityUser> signInManager, IPasswordHasher<AuthIdentityUser> passwordHasher, IHttpContextAccessor httpContext, IMapper mapper, RoleManager<AuthIdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _passwordHasher = passwordHasher;
             _httpContext = httpContext;
             _mapper = mapper;
+            _roleManager = roleManager;
         }
         public UserLoginResponseDto Login(UserLoginRequestDto dto)
         {
@@ -96,7 +98,21 @@ namespace FFinder.BLL.Concrete
                     throw new Exception("Kayıt sırasında hata oluştu.");
                 }
 
-                await _userManager.AddToRoleAsync(identityUser, "User");
+
+                var role = await _roleManager.FindByNameAsync("User");
+                if (role==null)
+                {
+                    var result=await _roleManager.CreateAsync(new AuthIdentityRole() {Name = "User"});
+                    if (result.Succeeded)
+                    {
+                        await _userManager.AddToRoleAsync(identityUser, "User");
+                    }
+                    else
+                    {
+                        throw new Exception("Rol eklenirken hata oluştu");
+                    }
+                }
+
             }
             catch (Exception e)
             {
@@ -187,11 +203,11 @@ namespace FFinder.BLL.Concrete
             }
 
             var dbUser = _userManager.Users.
-                Include(x => x.PostRates).
-                Include(x => x.Posts).
-                Include(x => x.CommentRates).
-                Include(x => x.Comments).
-                FirstOrDefault(x => x.NormalizedUserName == user);
+                Include(x => x.PostRate).
+                Include(x => x.Post).
+                Include(x => x.CommentRate).
+                Include(x => x.Comment).
+                FirstOrDefault(x => x.UserName == user);
 
             if (dbUser == null)
             {

@@ -14,11 +14,11 @@ namespace FFinder.DAL.Concrete.EntityFramework
         public PostRate Get(Expression<Func<PostRate, bool>> filter = null)
         {
             using SqlDbContext context = new SqlDbContext();
-            return filter == null ? context.PostRates
+            return filter == null ? context.PostRate
                 .Include(x => x.Owner)
                 .Include(y => y.Post)
                 .ThenInclude(c => c.Owner)
-                .FirstOrDefault() : context.PostRates
+                .FirstOrDefault() : context.PostRate
                 .Include(x => x.Owner)
                 .Include(y => y.Post)
                 .ThenInclude(c => c.Owner).FirstOrDefault(filter);
@@ -27,11 +27,11 @@ namespace FFinder.DAL.Concrete.EntityFramework
         public List<PostRate> GetList(Expression<Func<PostRate, bool>> filter = null)
         {
             using SqlDbContext context = new SqlDbContext();
-            return filter == null ? context.PostRates
+            return filter == null ? context.PostRate
                 .Include(x => x.Owner)
                 .Include(y => y.Post)
                 .ThenInclude(c => c.Owner)
-                .ToList() : context.PostRates
+                .ToList() : context.PostRate
                 .Include(x => x.Owner)
                 .Include(y => y.Post)
                 .ThenInclude(c => c.Owner).Where(filter).ToList();
