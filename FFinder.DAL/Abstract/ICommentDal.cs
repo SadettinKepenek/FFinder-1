@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FFinder.DAL.Abstract
 {
-    interface ICommentDal:IEntityRepository<Comment>
+    public interface ICommentDal:IEntityRepository<Comment>
     {
     }
 }
