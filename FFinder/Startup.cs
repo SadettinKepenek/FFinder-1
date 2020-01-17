@@ -50,7 +50,7 @@ namespace FFinder
             services.AddDbContext<SqlDbContext>(opt =>
             {
                 opt.UseSqlServer(
-                    TokenBase.Connection, b => b.MigrationsAssembly("FFinder"));
+                    Configuration.GetConnectionString("FFinder"), b => b.MigrationsAssembly("FFinder"));
             });
 
             services.AddIdentity<AuthIdentityUser, AuthIdentityRole>(options => { })
@@ -88,6 +88,8 @@ namespace FFinder
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
+
 
             app.UseRouting();
 

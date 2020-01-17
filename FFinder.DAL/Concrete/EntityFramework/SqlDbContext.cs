@@ -1,7 +1,9 @@
-﻿using FFinder.Core.Authentication;
+﻿using System;
+using FFinder.Core.Authentication;
 using FFinder.Entity.Concrete;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace FFinder.DAL.Concrete.EntityFramework
 {
@@ -111,7 +113,8 @@ namespace FFinder.DAL.Concrete.EntityFramework
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(TokenBase.Connection);
+                
+                //optionsBuilder.UseSqlServer(TokenBase.Connection);
             }
         }
 
