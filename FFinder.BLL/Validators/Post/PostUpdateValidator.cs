@@ -4,10 +4,11 @@ using FluentValidation;
 
 namespace FFinder.BLL.Validators.Post
 {
-    public class PostAddValidator : AbstractValidator<PostAddDto>
+    public class PostUpdateValidator:AbstractValidator<PostUpdateDto>
     {
-        public PostAddValidator()
+        public PostUpdateValidator()
         {
+            RuleFor(x => x.PostId).NotNull().NotEmpty().WithMessage("Post Idsi boş geçilemez");
             RuleFor(x => x.IsActive).NotNull().NotEmpty().WithMessage("Aktiflik durumu boş geçilemez");
             RuleFor(x => x.OwnerId).NotNull().NotEmpty().WithMessage("Kullanıcı Id'si boş geçilemez");
             RuleFor(x => x.PostBody).NotNull().NotEmpty().WithMessage("Mesaj içeriği ve Resim boş geçilemez.En az birisi dolu olmalıdır.").When(x => String.IsNullOrEmpty(x.PostImageUrl));
