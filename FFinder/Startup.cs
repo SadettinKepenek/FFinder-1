@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using FFinder.BLL.Abstract;
+using FFinder.BLL.Concrete;
 using FFinder.Core.Authentication;
 using FFinder.Core.DAL;
+using FFinder.DAL.Abstract;
 using FFinder.DAL.Concrete.EntityFramework;
 using FFinder.Entity.Concrete;
 using FFinder.MappingProfiles;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -55,6 +59,30 @@ namespace FFinder
 
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
+
+
+            #region Injections
+
+            services.AddSingleton<ICommentDal, EfCommentRepository>();
+            services.AddSingleton<ICommentRateDal, EfCommentRateRepository>();
+            services.AddSingleton<IFollowerRepository, EfFollowerRepository>();
+            services.AddSingleton<IPostRateRepository, EfPostRateRepository>();
+            services.AddSingleton<IPostRepository, EfPostRepository>();
+
+            services.AddSingleton<IAuthService, AuthManager>();
+            services.AddSingleton<ICommentRateService, CommentRateManager>();
+            services.AddSingleton<ICommentService,CommentManager >();
+            services.AddSingleton<IFollowerService, FollowerManager>();
+            services.AddSingleton<IPostRateService, PostRateManager>();
+            services.AddSingleton<IPostService, PostManager>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+
+            #endregion
+
+
+
 
             services.AddDbContext<SqlDbContext>(opt =>
             {

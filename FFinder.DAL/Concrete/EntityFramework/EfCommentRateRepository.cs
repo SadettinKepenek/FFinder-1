@@ -10,7 +10,7 @@ using System.Text;
 
 namespace FFinder.DAL.Concrete.EntityFramework
 {
-    class EfCommentRateRepository: EfEntityRepositoryBase<CommentRate,SqlDbContext>,ICommentRateDal
+    public class EfCommentRateRepository: EfEntityRepositoryBase<CommentRate,SqlDbContext>,ICommentRateDal
     {
         public CommentRate Get(Expression<Func<CommentRate, bool>> filter = null)
         {
