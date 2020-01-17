@@ -85,28 +85,8 @@ namespace FFinder.BLL.Concrete
                     throw new ValidationException(validationResult.ToString());
                 }
 
-                var identityUser = new AuthIdentityUser()
-                {
-                    Email = userAddModel.Email,
-                    UserName = userAddModel.UserName,
-                    Firstname = userAddModel.Firstname,
-                    Lastname = userAddModel.Lastname,
-                    AboutMe = userAddModel.AboutMe,
-                    City = userAddModel.City,
-                    Town = userAddModel.Town,
-                    Country = userAddModel.Country,
-                    Gender = userAddModel.Gender,
-                    InstagramUrl = userAddModel.InstagramUrl,
-                    FacebookUrl = userAddModel.FacebookUrl,
-                    IsActive = true,
-                    LinkedInUrl = userAddModel.LinkedInUrl,
-                    PhoneNumber = userAddModel.PhoneNumber,
-                    TwitterUrl = userAddModel.TwitterUrl,
-                    ViberUrl = userAddModel.ViberUrl,
-                    School = userAddModel.School,
+                var identityUser = _mapper.Map<AuthIdentityUser>(userAddModel);
 
-
-                };
                 var createdUser =
                     _userManager.CreateAsync(
                         identityUser, password);
