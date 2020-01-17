@@ -6,7 +6,7 @@ using System.Text;
 
 namespace FFinder.BLL.Validators.CommentRate
 {
-    public class UpdateCommentRateValidator:AbstractValidator<CommandRateUpdateDto>
+    public class UpdateCommentRateValidator:AbstractValidator<CommentRateUpdateDto>
     {
         public UpdateCommentRateValidator()
         {
