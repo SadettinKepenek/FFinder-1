@@ -1,45 +1,45 @@
 ﻿using AutoMapper;
 using FFinder.BLL.Abstract;
+using FFinder.BLL.Validators.Comment;
 using FFinder.BLL.Validators.Post;
-using FFinder.Core.DataTransferObjects.Post;
+using FFinder.Core.DataTransferObjects.Comment;
 using FFinder.DAL.Abstract;
 using FFinder.Entity.Concrete;
-using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace FFinder.BLL.Concrete
 {
-    public class PostManager:IPostService
+    public class CommentManager : ICommentService
     {
-        IPostRepository _postRepository;
+        ICommentDal _commentDal;
         IMapper _mapper;
-        public PostManager(IPostRepository postRepository, IMapper mapper)
+        public CommentManager(ICommentDal commentDal, IMapper mapper)
         {
-            _postRepository = postRepository;
+            _commentDal = commentDal;
             _mapper = mapper;
         }
-
-        public void Add(PostAddDto model)
+        public void Add(CommentAddDto model)
         {
             try
             {
-                PostAddValidator validator = new PostAddValidator();
+                AddCommentValidator validator = new AddCommentValidator();
                 var validationResult = validator.Validate(model);
                 if (!validationResult.IsValid)
                 {
                     throw new Exception("Validation hatası");
                 }
-                var mappedPost = _mapper.Map<Post>(model);
-                _postRepository.Add(mappedPost);
+                var mappedPost = _mapper.Map<Comment>(model);
+                _commentDal.Add(mappedPost);
             }
             catch (Exception e)
             {
 
                 throw new Exception("Bilinmeyen bir hata oluştu");
             }
-        }  
+        }
+
         public void Delete(string id)
         {
             try
@@ -48,8 +48,8 @@ namespace FFinder.BLL.Concrete
                 {
                     throw new NullReferenceException("id null olamaz");
                 }
-                var mappedPost = _mapper.Map<Post>(id);
-                _postRepository.Delete(mappedPost);
+                var mappedPost = _mapper.Map<Comment>(id);
+                _commentDal.Delete(mappedPost);
             }
             catch (Exception e)
             {
@@ -58,27 +58,26 @@ namespace FFinder.BLL.Concrete
             }
         }
 
-        public List<PostListDto> GetAll()
+        public List<CommentListDto> GetAll()
         {
             try
-            {            
-                var posts = _postRepository.GetList();
+            {
+                var posts = _commentDal.GetList();
                 if (posts == null)
                 {
                     throw new ArgumentNullException("Post Bulunamadı");
                 }
 
-                var mappedPosts = _mapper.Map<List<PostListDto>>(posts);
+                var mappedPosts = _mapper.Map<List<CommentListDto>>(posts);
                 return mappedPosts;
             }
             catch (Exception e)
-            { 
+            {
                 throw new Exception("Bilinmeyen bir hata oluştu");
             }
-            
         }
 
-        public PostDetailDto GetById(string id)
+        public CommentDetailDto GetById(string id)
         {
             try
             {
@@ -86,13 +85,13 @@ namespace FFinder.BLL.Concrete
                 {
                     throw new NullReferenceException("id null olamaz");
                 }
-                var post = _postRepository.GetList(x => x.PostId == id);
+                var post = _commentDal.GetList(x => x.CommentId == id);
                 if (post == null)
                 {
                     throw new ArgumentNullException("Post Bulunamadı");
                 }
 
-                var mappedPost = _mapper.Map<PostDetailDto>(post);
+                var mappedPost = _mapper.Map<CommentDetailDto>(post);
                 return mappedPost;
             }
             catch (Exception e)
@@ -101,19 +100,18 @@ namespace FFinder.BLL.Concrete
             }
         }
 
-        public void Update(PostUpdateDto model)
+        public void Update(CommentUpdateDto model)
         {
-            
             try
             {
-                PostUpdateValidator validator = new PostUpdateValidator();
+                UpdateCommentValidator validator = new UpdateCommentValidator();
                 var validationResult = validator.Validate(model);
                 if (!validationResult.IsValid)
                 {
                     throw new Exception("Validation hatası");
                 }
-                var mappedPost = _mapper.Map<Post>(model);
-                _postRepository.Update(mappedPost);                      
+                var mappedPost = _mapper.Map<Comment>(model);
+                _commentDal.Update(mappedPost);
             }
             catch (Exception e)
             {

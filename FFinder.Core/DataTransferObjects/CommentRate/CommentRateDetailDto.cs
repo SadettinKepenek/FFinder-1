@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FFinder.Core.DataTransferObjects.CommentRate
 {
-    public class CommandRateDetailDto
+    public class CommentRateDetailDto
     {
         public string CommentRateId { get; set; }
         public bool IsLike { get; set; }
