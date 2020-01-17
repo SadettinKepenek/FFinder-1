@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using FFinder.Core.DataTransferObjects.Post;
+using FFinder.Core.DataTransferObjects.PostRate;
+using FFinder.Core.DataTransferObjects.User;
 
 namespace FFinder.Core.DataTransferObjects.Comment
 {
@@ -12,9 +15,9 @@ namespace FFinder.Core.DataTransferObjects.Comment
         public DateTime CommentDate { get; set; }
         public string OwnerId { get; set; }
         public string PostId { get; set; }
-        public virtual AuthIdentityUser Owner { get; set; }
-        public virtual Entity.Concrete.Post Post { get; set; }
-        public virtual ICollection<Entity.Concrete.PostRate> Rates { get; set; }
+        public virtual UserListDto Owner { get; set; }
+        public virtual PostListDto Post { get; set; }
+        public virtual ICollection<PostRateListDto> Rates { get; set; }
         public bool IsActive { get; set; }
     }
 }

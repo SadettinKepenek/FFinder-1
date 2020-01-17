@@ -1,4 +1,6 @@
 ﻿using System;
+using FFinder.Core.DataTransferObjects.Post;
+using FFinder.Core.DataTransferObjects.User;
 using FFinder.Entity.Concrete;
 
 namespace FFinder.Core.DataTransferObjects.PostRate
@@ -11,7 +13,7 @@ namespace FFinder.Core.DataTransferObjects.PostRate
         public string PostId { get; set; }
         public string OwnerId { get; set; }
         public bool IsActive { get; set; }
-        public virtual AuthIdentityUser Owner { get; set; }
-        public virtual Entity.Concrete.Post Post { get; set; }
+        public virtual UserListDto Owner { get; set; }
+        public virtual PostListDto Post { get; set; }
     }
 }

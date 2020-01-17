@@ -1,4 +1,5 @@
 ﻿using System;
+using FFinder.Core.DataTransferObjects.User;
 using FFinder.Entity.Concrete;
 
 namespace FFinder.Core.DataTransferObjects.Follower
@@ -12,7 +13,7 @@ namespace FFinder.Core.DataTransferObjects.Follower
         public bool IsAccepted { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual AuthIdentityUser User1 { get; set; }
-        public virtual AuthIdentityUser User2 { get; set; }
+        public virtual UserListDto User1 { get; set; }
+        public virtual UserListDto User2 { get; set; }
     }
 }
