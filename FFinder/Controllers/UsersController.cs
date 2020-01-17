@@ -35,6 +35,7 @@ namespace FFinder.Controllers
                     StatusCode = 200,
                     Data = loginResult
                 };
+                return Ok(responseModel);
 
             }
             catch (Exception e)
@@ -46,7 +47,6 @@ namespace FFinder.Controllers
                 };
                 return BadRequest(responseModel);
             }
-            return Ok();
         }
 
         public async Task<IActionResult> Register(UserAddDto userAddDto)
@@ -61,6 +61,7 @@ namespace FFinder.Controllers
                     Message = Message.SuccessMessage,
                     StatusCode = 200,
                 };
+                return Ok(responseModel);
 
             }
             catch (Exception e)
@@ -72,7 +73,6 @@ namespace FFinder.Controllers
                 };
                 return BadRequest(responseModel);
             }
-            return Ok();
         }
     }
 }
