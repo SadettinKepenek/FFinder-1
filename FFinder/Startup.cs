@@ -42,7 +42,16 @@ namespace FFinder
                 opt.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
             }); ;
 
-            var mappingConfig = new MapperConfiguration(mc => { mc.AddProfile(new BaseMappingProfile()); });
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new BaseMappingProfile());
+                mc.AddProfile(new CommentMappingProfile());
+                mc.AddProfile(new CommentRateMappingProfile());
+                mc.AddProfile(new FollowerMappingProfile());
+                mc.AddProfile(new PostMappingProfile());
+                mc.AddProfile(new PostRateMappingProfile());
+                mc.AddProfile(new UserMappingProfile());
+            });
 
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
