@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FFinder.Core\FFinder.Core.csproj" />
+    <ProjectReference Include="..\FFinder.DAL\FFinder.DAL.csproj" />
   </ItemGroup>
 
 </Project>
