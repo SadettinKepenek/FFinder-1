@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 using AutoMapper;
 using FFinder.BLL.Abstract;
 using FFinder.BLL.Validators.User;
@@ -18,7 +19,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace FFinder.BLL.Concrete
 {
-    public class AuthManager:IAuthService
+    public class AuthManager : IAuthService
     {
         private readonly UserManager<AuthIdentityUser> _userManager;
         private readonly SignInManager<AuthIdentityUser> _signInManager;
@@ -73,7 +74,7 @@ namespace FFinder.BLL.Concrete
                 throw e;
             }
         }
-        public void Register(UserAddDto userAddModel, string password)
+        public async Task Register(UserAddDto userAddModel, string password)
         {
             //
             try
@@ -87,13 +88,15 @@ namespace FFinder.BLL.Concrete
 
                 var identityUser = _mapper.Map<AuthIdentityUser>(userAddModel);
 
-                var createdUser =
+                var createdUser = await
                     _userManager.CreateAsync(
                         identityUser, password);
-                if (!createdUser.Result.Succeeded)
+                if (!createdUser.Succeeded)
                 {
                     throw new Exception("Kayıt sırasında hata oluştu.");
                 }
+
+                await _userManager.AddToRoleAsync(identityUser, "User");
             }
             catch (Exception e)
             {
