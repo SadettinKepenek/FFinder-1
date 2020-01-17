@@ -48,8 +48,7 @@ namespace FFinder.BLL.Concrete
                 {
                     throw new NullReferenceException("id null olamaz");
                 }
-                var mappedPost = _mapper.Map<CommentRate>(id);
-                _commentRateDal.Delete(mappedPost);
+                _commentRateDal.Delete(new CommentRate {CommentRateId = id });
             }
             catch (Exception e)
             {
