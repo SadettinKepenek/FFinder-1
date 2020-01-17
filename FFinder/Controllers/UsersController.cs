@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using FFinder.BLL.Abstract;
 using FFinder.Core.DataTransferObjects.User;
 using FFinder.Core.System;
 using FFinder.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +25,6 @@ namespace FFinder.Controllers
         }
 
         [HttpPost("Login")]
-
         public async Task<IActionResult> Login(UserLoginRequestDto model)
         {
             HttpResponseModel responseModel;
@@ -62,6 +63,36 @@ namespace FFinder.Controllers
                 {
                     Message = Message.SuccessMessage,
                     StatusCode = 200,
+                };
+                return Ok(responseModel);
+
+            }
+            catch (Exception e)
+            {
+                responseModel = new HttpResponseModelSimple
+                {
+                    Message = e.Message,
+                    StatusCode = 400
+                };
+                return BadRequest(responseModel);
+            }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> GetMyProfile()
+        {
+
+            HttpResponseModel responseModel;
+            try
+            {
+                var identityUser = _authService.GetUser();
+
+                responseModel = new HttpResponseModelData<UserDetailDto>()
+                {
+                    Message = Message.SuccessMessage,
+                    StatusCode = 200,
+                    Data = identityUser
                 };
                 return Ok(responseModel);
 

@@ -5,6 +5,13 @@ namespace FFinder.Entity.Concrete
 {
     public class AuthIdentityUser : IdentityUser
     {
+        public AuthIdentityUser()
+        {
+            PostRate=new HashSet<PostRate>();
+            Follower=new HashSet<Follower>();
+            Comment=new HashSet<Comment>();
+            CommentRate=new HashSet<CommentRate>();
+        }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string ProfilePhotoUrl { get; set; }
@@ -20,11 +27,11 @@ namespace FFinder.Entity.Concrete
         public string Country { get; set; }
         public string School { get; set; }
         public bool IsActive { get; set; }
-        public virtual ICollection<Follower> Followers { get; set; }
-        public virtual  ICollection<Comment> Comments { get; set; }
-        public virtual  ICollection<Post> Posts { get; set; }
-        public virtual  ICollection<PostRate> PostRates { get; set; }
-        public virtual  ICollection<CommentRate> CommentRates { get; set; }
+        public virtual ICollection<Follower> Follower { get; set; }
+        public virtual  ICollection<Comment> Comment { get; set; }
+        public virtual  ICollection<Post> Post { get; set; }
+        public virtual  ICollection<PostRate> PostRate { get; set; }
+        public virtual  ICollection<CommentRate> CommentRate { get; set; }
 
 
 

@@ -19,11 +19,11 @@ namespace FFinder.DAL.Concrete.EntityFramework
         {
         }
 
-        public virtual DbSet<Post> Posts { get; set; }
-        public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<CommentRate> CommentRates { get; set; }
-        public virtual DbSet<Follower> Followers { get; set; }
-        public virtual DbSet<PostRate> PostRates { get; set; }
+        public virtual DbSet<Post> Post { get; set; }
+        public virtual DbSet<Comment> Comment { get; set; }
+        public virtual DbSet<CommentRate> CommentRate { get; set; }
+        public virtual DbSet<Follower> Follower { get; set; }
+        public virtual DbSet<PostRate> PostRate { get; set; }
 
 
 
@@ -44,7 +44,7 @@ namespace FFinder.DAL.Concrete.EntityFramework
                     b.Property(x => x.ViberUrl).HasMaxLength(250);
                     b.Property(x => x.InstagramUrl).HasMaxLength(250);
                     b.Property(x => x.LinkedInUrl).HasMaxLength(250);
-                    b.HasMany(d => d.Followers)
+                    b.HasMany(d => d.Follower)
                         .WithOne(p => p.User1)
                         .HasConstraintName("FK_Followers_User").OnDelete(DeleteBehavior.NoAction);
                 
@@ -61,7 +61,7 @@ namespace FFinder.DAL.Concrete.EntityFramework
                 b.Property(e => e.PostId).IsRequired().HasMaxLength(450);
                 b.Property(e => e.CommentDate).HasColumnName("datetime").IsRequired().HasMaxLength(250);
                 b.HasMany(x=>x.Rates).WithOne(x=>x.Comment).HasConstraintName("FK_Comment_CommentRates").OnDelete(DeleteBehavior.NoAction);
-                b.HasOne(x => x.Owner).WithMany(x => x.Comments).HasConstraintName("FK_Comments_User").OnDelete(DeleteBehavior.NoAction);
+                b.HasOne(x => x.Owner).WithMany(x => x.Comment).HasConstraintName("FK_Comments_User").OnDelete(DeleteBehavior.NoAction);
 
 
             });
@@ -73,7 +73,7 @@ namespace FFinder.DAL.Concrete.EntityFramework
                 b.Property(e => e.IsActive).IsRequired().HasMaxLength(250);
                 b.Property(e => e.IsLike).IsRequired();
                 b.Property(e => e.RateDate).IsRequired().HasMaxLength(250).HasColumnName("datetime");
-                b.HasOne(x => x.Owner).WithMany(x => x.CommentRates).HasConstraintName("FK_CommentRates_User").OnDelete(DeleteBehavior.NoAction);
+                b.HasOne(x => x.Owner).WithMany(x => x.CommentRate).HasConstraintName("FK_CommentRates_User").OnDelete(DeleteBehavior.NoAction);
 
 
             });
@@ -85,7 +85,7 @@ namespace FFinder.DAL.Concrete.EntityFramework
                 b.Property(e => e.PostBody).IsRequired().HasMaxLength(250);
                 b.Property(e => e.PublishDate).IsRequired().HasMaxLength(250).HasColumnName("datetime");
                 b.Property(e => e.PostImageUrl).HasMaxLength(250);
-                b.HasOne(x => x.Owner).WithMany(x => x.Posts).HasConstraintName("FK_Posts_User").OnDelete(DeleteBehavior.NoAction);
+                b.HasOne(x => x.Owner).WithMany(x => x.Post).HasConstraintName("FK_Posts_User").OnDelete(DeleteBehavior.NoAction);
                 b.HasMany(e => e.Comments).WithOne(x => x.Post).HasConstraintName("FK_Comments_Post").OnDelete(DeleteBehavior.NoAction); 
                 b.HasMany(e => e.Rates).WithOne(x => x.Post).HasConstraintName("FK_Rates_Post").OnDelete(DeleteBehavior.NoAction);
 
@@ -98,7 +98,7 @@ namespace FFinder.DAL.Concrete.EntityFramework
                 b.Property(e => e.OwnerId).IsRequired().HasMaxLength(450);
                 b.Property(e => e.IsLike).IsRequired();
                 b.Property(e => e.RateDate).IsRequired().HasMaxLength(250).HasColumnName("datetime");
-                b.HasOne(x => x.Owner).WithMany(x => x.PostRates).HasConstraintName("FK_PostRates_User").OnDelete(DeleteBehavior.NoAction);
+                b.HasOne(x => x.Owner).WithMany(x => x.PostRate).HasConstraintName("FK_PostRates_User").OnDelete(DeleteBehavior.NoAction);
 
 
             });

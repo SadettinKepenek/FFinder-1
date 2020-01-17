@@ -203,11 +203,11 @@ namespace FFinder.BLL.Concrete
             }
 
             var dbUser = _userManager.Users.
-                Include(x => x.PostRates).
-                Include(x => x.Posts).
-                Include(x => x.CommentRates).
-                Include(x => x.Comments).
-                FirstOrDefault(x => x.NormalizedUserName == user);
+                Include(x => x.PostRate).
+                Include(x => x.Post).
+                Include(x => x.CommentRate).
+                Include(x => x.Comment).
+                FirstOrDefault(x => x.UserName == user);
 
             if (dbUser == null)
             {

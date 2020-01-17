@@ -16,9 +16,9 @@ namespace FFinder.DAL.Concrete.EntityFramework
             using SqlDbContext sqlDbContext = new SqlDbContext();
 
             return filter == null
-                ? sqlDbContext.Followers.Include(x => x.User1)
+                ? sqlDbContext.Follower.Include(x => x.User1)
                     .Include(y => y.User2).FirstOrDefault()
-                : sqlDbContext.Followers.Include(x => x.User1)
+                : sqlDbContext.Follower.Include(x => x.User1)
                     .Include(y => y.User2).FirstOrDefault(filter);
         }
 
@@ -26,9 +26,9 @@ namespace FFinder.DAL.Concrete.EntityFramework
         {
             using SqlDbContext sqlDbContext = new SqlDbContext();
             return filter == null
-                ? sqlDbContext.Followers.Include(x => x.User1)
+                ? sqlDbContext.Follower.Include(x => x.User1)
                     .Include(y => y.User2).ToList()
-                : sqlDbContext.Followers.Include(x => x.User1)
+                : sqlDbContext.Follower.Include(x => x.User1)
                     .Include(y => y.User2).Where(filter).ToList();
         }
     }

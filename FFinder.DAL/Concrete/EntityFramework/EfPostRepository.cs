@@ -18,14 +18,14 @@ namespace FFinder.DAL.Concrete.EntityFramework
         Post IEntityRepository<Post>.Get(Expression<Func<Post, bool>> filter)
         {
             using SqlDbContext context = new SqlDbContext();
-            return filter == null ? context.Posts
+            return filter == null ? context.Post
                         .Include(x => x.Owner)
                         .Include(y => y.Rates)
                         .ThenInclude(c => c.Owner)
                         .Include(x => x.Comments)
                         .ThenInclude(c => c.Owner)
                         .FirstOrDefault()
-                    : context.Posts
+                    : context.Post
                         .Include(x => x.Owner)
                         .Include(y => y.Rates)
                         .ThenInclude(c => c.Owner)
@@ -37,13 +37,13 @@ namespace FFinder.DAL.Concrete.EntityFramework
         List<Post> IEntityRepository<Post>.GetList(Expression<Func<Post, bool>> filter)
         {
             using SqlDbContext context = new SqlDbContext();
-            return filter == null ? context.Posts.Include(x => x.Owner)
+            return filter == null ? context.Post.Include(x => x.Owner)
                     .Include(y => y.Rates)
                     .ThenInclude(c => c.Owner)
                     .Include(x => x.Comments)
                     .ThenInclude(c => c.Owner).ToList()
                 :
-                context.Posts
+                context.Post
                     .Include(x => x.Owner)
                     .Include(y => y.Rates)
                     .ThenInclude(c => c.Owner)
