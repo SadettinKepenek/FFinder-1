@@ -90,6 +90,12 @@ namespace FFinder.BLL.Concrete
 
                 var identityUser = _mapper.Map<AuthIdentityUser>(userAddModel);
 
+               var findResult=await _userManager.FindByNameAsync(identityUser.UserName);
+               if (findResult!=null)
+               {
+                   throw new ValidationException("Kullanıcı zaten mevcut");
+               }
+
                 var createdUser = await
                     _userManager.CreateAsync(
                         identityUser, password);
