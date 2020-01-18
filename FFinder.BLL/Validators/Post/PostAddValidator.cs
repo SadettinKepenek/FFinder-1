@@ -8,7 +8,7 @@ namespace FFinder.BLL.Validators.Post
     {
         public PostAddValidator()
         {
-            RuleFor(x => x.IsActive).NotNull().NotEmpty().WithMessage("Aktiflik durumu boş geçilemez");
+            RuleFor(x => x.IsActive).NotNull().WithMessage("Aktiflik durumu boş geçilemez");
             RuleFor(x => x.OwnerId).NotNull().NotEmpty().WithMessage("Kullanıcı Id'si boş geçilemez");
             RuleFor(x => x.PostBody).NotNull().NotEmpty().WithMessage("Mesaj içeriği ve Resim boş geçilemez.En az birisi dolu olmalıdır.").When(x => String.IsNullOrEmpty(x.PostImageUrl));
             RuleFor(x => x.PostImageUrl).NotNull().NotEmpty().WithMessage("Mesaj içeriği ve Resim boş geçilemez.En az birisi dolu olmalıdır.").When(x => String.IsNullOrEmpty(x.PostBody));
