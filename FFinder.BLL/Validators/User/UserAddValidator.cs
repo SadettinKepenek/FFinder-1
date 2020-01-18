@@ -7,7 +7,7 @@ namespace FFinder.BLL.Validators.User
     {
         public UserAddValidator()
         {
-            RuleFor(x => x.IsActive).NotNull().NotEmpty().WithMessage("Aktiflik durumu boş geçilemez");
+            RuleFor(x => x.IsActive).NotNull().WithMessage("Aktiflik durumu boş geçilemez");
             RuleFor(x => x.AboutMe).NotNull().NotEmpty().WithMessage("Hakkımda kısmı boş geçilemez");
             RuleFor(x => x.City).NotNull().NotEmpty().WithMessage("Şehir kısmı boş geçilemez");
             RuleFor(x => x.Country).NotNull().NotEmpty().WithMessage("Ülke kısmı boş geçilemez");

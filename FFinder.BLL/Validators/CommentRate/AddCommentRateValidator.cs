@@ -10,11 +10,11 @@ namespace FFinder.BLL.Validators.CommentRate
     {
         public AddCommentRateValidator()
         {
-            RuleFor(x => x.CommentId).NotEmpty().WithMessage("CommentId belirtilmelidir.");
-            RuleFor(x => x.IsLike).NotEmpty().WithMessage("Yoruma like atılıp atılmadığı belirtilmelidir.");
-            RuleFor(x => x.RateDate).NotEmpty().WithMessage("Rate'e ait date belirtilmelidir.");
-            RuleFor(x => x.IsActive).NotEmpty().WithMessage("Yorumun aktiflik durumu belirtilmelidir.");
-            RuleFor(x => x.OwnerId).NotEmpty().WithMessage("OwnerId belirtilmelidir.");
+            RuleFor(x => x.CommentId).NotNull().NotEmpty().WithMessage("CommentId belirtilmelidir.");
+            RuleFor(x => x.IsLike).NotNull().WithMessage("Yoruma like atılıp atılmadığı belirtilmelidir.");
+            RuleFor(x => x.RateDate).NotNull().NotEmpty().WithMessage("Rate'e ait date belirtilmelidir.");
+            RuleFor(x => x.IsActive).NotNull().WithMessage("Yorumun aktiflik durumu belirtilmelidir.");
+            RuleFor(x => x.OwnerId).NotNull().NotEmpty().WithMessage("OwnerId belirtilmelidir.");
         }
     }
 }
