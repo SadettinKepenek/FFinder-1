@@ -226,6 +226,7 @@ namespace FFinder.BLL.Concrete
 
             claims.Add(new Claim(ClaimTypes.Name, user.UserName));
             claims.Add(new Claim(ClaimTypes.Email, user.Email));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id));
             var roles = _userManager.GetRolesAsync(user).Result.ToList();
             foreach (string role in roles)
             {

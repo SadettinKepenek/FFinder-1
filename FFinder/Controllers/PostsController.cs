@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using FFinder.BLL.Abstract;
 using FFinder.Core.DataTransferObjects.Post;
+using FFinder.Extensions;
 using FFinder.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -61,6 +62,11 @@ namespace FFinder.Controllers
         {
             try
             {
+                string nameIdentifier = HttpContext.GetNameIdentifier();
+                if (!model.OwnerId.Equals(nameIdentifier))
+                {
+                    return Unauthorized("Erişim kısıtlandırıldı.");
+                }
                 _postService.Add(model);
                 return Ok(new HttpResponseModelSimple
                 {
@@ -82,6 +88,11 @@ namespace FFinder.Controllers
         {
             try
             {
+                string nameIdentifier = HttpContext.GetNameIdentifier();
+                if (!model.OwnerId.Equals(nameIdentifier))
+                {
+                    return Unauthorized("Erişim kısıtlandırıldı.");
+                }
                 _postService.Update(model);
                 return Ok(new HttpResponseModelSimple
                 {
@@ -103,6 +114,12 @@ namespace FFinder.Controllers
         {
             try
             {
+                var entity = _postService.GetById(id);
+                string nameIdentifier = HttpContext.GetNameIdentifier();
+                if (!entity.OwnerId.Equals(nameIdentifier))
+                {
+                    return Unauthorized("Erişim kısıtlandırıldı.");
+                }
                 _postService.Delete(id);
                 return Ok(new HttpResponseModelSimple
                 {
