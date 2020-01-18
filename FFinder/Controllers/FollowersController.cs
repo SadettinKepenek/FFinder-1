@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FFinder.BLL.Abstract;
 using FFinder.Core.DataTransferObjects.Follower;
+using FFinder.Extensions;
 using FFinder.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -61,6 +62,11 @@ namespace FFinder.Controllers
         {
             try
             {
+                string nameIdentifier = HttpContext.GetNameIdentifier();
+                if (!model.User1Id.Equals(nameIdentifier))
+                {
+                    return Unauthorized("Erişim kısıtlandırıldı.");
+                }
                 _followerService.Add(model);
                 return Ok(new HttpResponseModelSimple
                 {
@@ -82,6 +88,11 @@ namespace FFinder.Controllers
         {
             try
             {
+                string nameIdentifier = HttpContext.GetNameIdentifier();
+                if (!model.User1Id.Equals(nameIdentifier))
+                {
+                    return Unauthorized("Erişim kısıtlandırıldı.");
+                }
                 _followerService.Update(model);
                 return Ok(new HttpResponseModelSimple
                 {
@@ -103,6 +114,12 @@ namespace FFinder.Controllers
         {
             try
             {
+                string nameIdentifier = HttpContext.GetNameIdentifier();
+                var entity = _followerService.Get(id);
+                if (!entity.User1Id.Equals(nameIdentifier))
+                {
+                    return Unauthorized("Erişim kısıtlandırıldı.");
+                }
                 _followerService.Delete(id);
                 return Ok(new HttpResponseModelSimple
                 {
