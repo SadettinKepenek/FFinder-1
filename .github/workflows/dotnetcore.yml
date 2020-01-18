@@ -13,6 +13,8 @@ jobs:
         dotnet-version: 3.1.100
     - name: Build with dotnet
       run: dotnet build --configuration Release
+    - name : Run
+      run : dotnet run -p FFinder
       
       
       
