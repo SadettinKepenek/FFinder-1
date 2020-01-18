@@ -121,8 +121,8 @@ namespace FFinder.DAL.Concrete.EntityFramework
         {
             if (!optionsBuilder.IsConfigured)
             {
-                
-                //optionsBuilder.UseSqlServer(TokenBase.Connection);
+
+                optionsBuilder.UseSqlServer(TokenBase.Connection);
             }
         }
 
