@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FFinder.BLL.Abstract;
 using FFinder.Core.DataTransferObjects.CommentRate;
 using FFinder.Entity.Concrete;
+using FFinder.Extensions;
 using FFinder.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -61,6 +62,11 @@ namespace FFinder.Controllers
         {
             try
             {
+                string nameIdentifier = HttpContext.GetNameIdentifier();
+                if (!model.OwnerId.Equals(nameIdentifier))
+                {
+                    return Unauthorized("Erişim kısıtlandırıldı.");
+                }
                 _commentRateService.Add(model);
                 return Ok(new HttpResponseModelSimple
                 {
@@ -82,6 +88,11 @@ namespace FFinder.Controllers
         {
             try
             {
+                string nameIdentifier = HttpContext.GetNameIdentifier();
+                if (!model.OwnerId.Equals(nameIdentifier))
+                {
+                    return Unauthorized("Erişim kısıtlandırıldı.");
+                }
                 _commentRateService.Update(model);
                 return Ok(new HttpResponseModelSimple
                 {
@@ -103,6 +114,12 @@ namespace FFinder.Controllers
         {
             try
             {
+                string nameIdentifier = HttpContext.GetNameIdentifier();
+                var entity = _commentRateService.GetById(id);
+                if (!entity.OwnerId.Equals(nameIdentifier))
+                {
+                    return Unauthorized("Erişim kısıtlandırıldı.");
+                }
                 _commentRateService.Delete(id);
                 return Ok(new HttpResponseModelSimple
                 {
