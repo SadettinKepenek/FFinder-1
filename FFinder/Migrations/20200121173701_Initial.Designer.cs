@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FFinder.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20200117192749_Test_2")]
-    partial class Test_2
+    [Migration("20200121173701_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -192,8 +192,7 @@ namespace FFinder.Migrations
                         .HasMaxLength(250);
 
                     b.Property<DateTime>("CommentDate")
-                        .HasColumnName("datetime")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("datetime")
                         .HasMaxLength(250);
 
                     b.Property<bool>("IsActive")
@@ -215,7 +214,7 @@ namespace FFinder.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comment");
                 });
 
             modelBuilder.Entity("FFinder.Entity.Concrete.CommentRate", b =>
@@ -243,8 +242,7 @@ namespace FFinder.Migrations
                         .HasMaxLength(450);
 
                     b.Property<DateTime>("RateDate")
-                        .HasColumnName("datetime")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("datetime")
                         .HasMaxLength(250);
 
                     b.HasKey("CommentRateId");
@@ -253,7 +251,7 @@ namespace FFinder.Migrations
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("CommentRates");
+                    b.ToTable("CommentRate");
                 });
 
             modelBuilder.Entity("FFinder.Entity.Concrete.Follower", b =>
@@ -288,7 +286,7 @@ namespace FFinder.Migrations
 
                     b.HasIndex("User2Id");
 
-                    b.ToTable("Followers");
+                    b.ToTable("Follower");
                 });
 
             modelBuilder.Entity("FFinder.Entity.Concrete.Post", b =>
@@ -317,15 +315,14 @@ namespace FFinder.Migrations
                         .HasMaxLength(250);
 
                     b.Property<DateTime>("PublishDate")
-                        .HasColumnName("datetime")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("datetime")
                         .HasMaxLength(250);
 
                     b.HasKey("PostId");
 
                     b.HasIndex("OwnerId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Post");
                 });
 
             modelBuilder.Entity("FFinder.Entity.Concrete.PostRate", b =>
@@ -352,8 +349,7 @@ namespace FFinder.Migrations
                         .HasMaxLength(450);
 
                     b.Property<DateTime>("RateDate")
-                        .HasColumnName("datetime")
-                        .HasColumnType("datetime2")
+                        .HasColumnType("datetime")
                         .HasMaxLength(250);
 
                     b.HasKey("PostRateId");
@@ -362,7 +358,7 @@ namespace FFinder.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("PostRates");
+                    b.ToTable("PostRate");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -472,7 +468,7 @@ namespace FFinder.Migrations
             modelBuilder.Entity("FFinder.Entity.Concrete.Comment", b =>
                 {
                     b.HasOne("FFinder.Entity.Concrete.AuthIdentityUser", "Owner")
-                        .WithMany("Comments")
+                        .WithMany("Comment")
                         .HasForeignKey("OwnerId")
                         .HasConstraintName("FK_Comments_User")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -496,7 +492,7 @@ namespace FFinder.Migrations
                         .IsRequired();
 
                     b.HasOne("FFinder.Entity.Concrete.AuthIdentityUser", "Owner")
-                        .WithMany("CommentRates")
+                        .WithMany("CommentRate")
                         .HasForeignKey("OwnerId")
                         .HasConstraintName("FK_CommentRates_User")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -506,7 +502,7 @@ namespace FFinder.Migrations
             modelBuilder.Entity("FFinder.Entity.Concrete.Follower", b =>
                 {
                     b.HasOne("FFinder.Entity.Concrete.AuthIdentityUser", "User1")
-                        .WithMany("Followers")
+                        .WithMany("Follower")
                         .HasForeignKey("User1Id")
                         .HasConstraintName("FK_Followers_User")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -522,7 +518,7 @@ namespace FFinder.Migrations
             modelBuilder.Entity("FFinder.Entity.Concrete.Post", b =>
                 {
                     b.HasOne("FFinder.Entity.Concrete.AuthIdentityUser", "Owner")
-                        .WithMany("Posts")
+                        .WithMany("Post")
                         .HasForeignKey("OwnerId")
                         .HasConstraintName("FK_Posts_User")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -532,7 +528,7 @@ namespace FFinder.Migrations
             modelBuilder.Entity("FFinder.Entity.Concrete.PostRate", b =>
                 {
                     b.HasOne("FFinder.Entity.Concrete.AuthIdentityUser", "Owner")
-                        .WithMany("PostRates")
+                        .WithMany("PostRate")
                         .HasForeignKey("OwnerId")
                         .HasConstraintName("FK_PostRates_User")
                         .OnDelete(DeleteBehavior.NoAction)
