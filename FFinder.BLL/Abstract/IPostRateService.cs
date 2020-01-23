@@ -9,6 +9,6 @@ namespace FFinder.BLL.Abstract
         PostRateDetailDto Get(string id);
         void Add(PostRateAddDto dto);
         void Update(PostRateUpdateDto dto);
-        void Delete(string id);
+        void Delete(string ownerId,string postId);
     }
 }
