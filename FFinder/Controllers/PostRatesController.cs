@@ -109,7 +109,7 @@ namespace FFinder.Controllers
             }
         }
         [HttpDelete("Delete/{id}/{ownerId}")]
-        public async Task<IActionResult> Delete([FromBody] string id,[FromBody] string ownerId)
+        public async Task<IActionResult> Delete( string id, string ownerId)
         {
             try
             {
