@@ -38,10 +38,23 @@ namespace FFinder.BLL.Concrete
         {
             try
             {
+
+
                 var validator = new PostRateAddValidator();
                 var result = validator.Validate(dto);
                 if (!result.IsValid)
                     throw new ValidationException(result.ToString());
+
+
+                var existOne = _postRateRepository.Get(x => x.OwnerId == dto.OwnerId && x.PostId == dto.PostId);
+                if (existOne != null)
+                {
+                    if (existOne.IsLike && dto.IsLike)
+                        return;
+                    if (!existOne.IsLike && !dto.IsLike)
+                        return;
+                    _postRateRepository.Delete(existOne);
+                }
                 var entity = _mapper.Map<PostRate>(dto);
                 _postRateRepository.Add(entity);
             }
