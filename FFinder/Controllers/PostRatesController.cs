@@ -108,7 +108,7 @@ namespace FFinder.Controllers
                 });
             }
         }
-        [HttpDelete]
+        [HttpDelete("Delete/{id}/{ownerId}")]
         public async Task<IActionResult> Delete([FromBody] string id,[FromBody] string ownerId)
         {
             try
