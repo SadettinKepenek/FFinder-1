@@ -40,7 +40,7 @@ namespace FFinder
 
         public void ConfigureServices(IServiceCollection services)
         {
-           
+
 
 
 
@@ -63,13 +63,18 @@ namespace FFinder
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new BaseMappingProfile());
-                mc.AddProfile(new CommentMappingProfile());
-                mc.AddProfile(new CommentRateMappingProfile());
-                mc.AddProfile(new FollowerMappingProfile());
-                mc.AddProfile(new PostMappingProfile());
-                mc.AddProfile(new PostRateMappingProfile());
-                mc.AddProfile(new UserMappingProfile());
+                mc.AddProfiles(new List<Profile>()
+                {
+                    new CommentMappingProfile(),
+                    new CommentRateMappingProfile(),
+                    new BaseMappingProfile(),
+                    new FollowerMappingProfile(),
+                    new PostMappingProfile(),
+                    new PostRateMappingProfile(),
+                    new UserMappingProfile()
+
+                });
+    
             });
 
             IMapper mapper = mappingConfig.CreateMapper();
@@ -130,7 +135,7 @@ namespace FFinder
             app.UseHttpsRedirection();
             app.UseAuthentication();
 
-            
+
             app.UseRouting();
 
             app.UseAuthorization();
