@@ -12,7 +12,16 @@ namespace FFinder.Core.DataTransferObjects.Follower
         public bool IsAccepted { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual AuthIdentityUser User1 { get; set; }
-        public virtual AuthIdentityUser User2 { get; set; }
+        public string User1UserName { get; set; }
+        public string User1Email { get; set; }
+        public string User1Firstname { get; set; }
+        public string User1Lastname { get; set; }
+
+        public string User2UserName { get; set; }
+        public string User2Email { get; set; }
+        public string User2Firstname { get; set; }
+        public string User2Lastname { get; set; }
+
+
     }
 }
