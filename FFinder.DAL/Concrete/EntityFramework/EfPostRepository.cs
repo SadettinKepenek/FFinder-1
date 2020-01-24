@@ -22,14 +22,14 @@ namespace FFinder.DAL.Concrete.EntityFramework
                         .Include(x => x.Owner)
                         .Include(y => y.Rates)
                         .ThenInclude(c => c.Owner)
-                        .Include(x => x.Comments)
+                        .Include(x => x.Comments).ThenInclude(y=>y.Rates)
                         .ThenInclude(c => c.Owner)
                         .FirstOrDefault()
                     : context.Post
                         .Include(x => x.Owner)
                         .Include(y => y.Rates)
                         .ThenInclude(c => c.Owner)
-                        .Include(x => x.Comments)
+                        .Include(x => x.Comments).ThenInclude(y => y.Rates)
                         .ThenInclude(c => c.Owner).FirstOrDefault(filter)
                 ;
         }
@@ -40,14 +40,14 @@ namespace FFinder.DAL.Concrete.EntityFramework
             return filter == null ? context.Post.Include(x => x.Owner)
                     .Include(y => y.Rates)
                     .ThenInclude(c => c.Owner)
-                    .Include(x => x.Comments)
+                    .Include(x => x.Comments).ThenInclude(y => y.Rates)
                     .ThenInclude(c => c.Owner).ToList()
                 :
                 context.Post
                     .Include(x => x.Owner)
                     .Include(y => y.Rates)
                     .ThenInclude(c => c.Owner)
-                    .Include(x => x.Comments)
+                    .Include(x => x.Comments).ThenInclude(y => y.Rates)
                     .ThenInclude(c => c.Owner).Where(filter).ToList();
         }
     }
