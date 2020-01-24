@@ -13,64 +13,64 @@ namespace FFinder.MappingProfiles
         public CommentRateMappingProfile()
         {
             CreateMap<CommentRateAddDto, CommentRate>().ReverseMap();
-            CreateMap<CommentRateListDto, CommentRate>()
+            CreateMap<CommentRate, CommentRateListDto>()
                 .ForMember(dest =>
-                    dest.Owner.UserName, opt =>
-                    opt.MapFrom(src => src.OwnerUserName))
+                    dest.OwnerUserName, opt =>
+                    opt.MapFrom(src => src.Owner.UserName))
                 .ForMember(dest =>
-                    dest.Owner.Id, opt =>
-                    opt.MapFrom(src => src.OwnerId))
+                    dest.OwnerId, opt =>
+                    opt.MapFrom(src => src.Owner.Id))
                 .ForMember(dest =>
-                    dest.Owner.Email, opt =>
-                    opt.MapFrom(src => src.OwnerEmail))
+                    dest.OwnerEmail, opt =>
+                    opt.MapFrom(src => src.Owner.Email))
                 .ForMember(dest =>
-                    dest.Owner.Firstname, opt =>
-                    opt.MapFrom(src => src.OwnerFirstname))
+                    dest.OwnerFirstname, opt =>
+                    opt.MapFrom(src => src.Owner.Firstname))
                 .ForMember(dest =>
-                    dest.Owner.Lastname, opt =>
-                    opt.MapFrom(src => src.OwnerLastname))
+                    dest.OwnerLastname, opt =>
+                    opt.MapFrom(src => src.Owner.Lastname))
                 .ForMember(dest =>
-                    dest.Comment.CommentBody, opt =>
-                    opt.MapFrom(src => src.CommentBody))
+                    dest.CommentBody, opt =>
+                    opt.MapFrom(src => src.Comment.CommentBody))
                 .ForMember(dest =>
-                    dest.Comment.CommentDate, opt =>
-                    opt.MapFrom(src => src.CommentDate))
+                    dest.CommentDate, opt =>
+                    opt.MapFrom(src => src.Comment.CommentDate))
                 .ForMember(dest =>
-                    dest.Comment.OwnerId, opt =>
-                    opt.MapFrom(src => src.CommentOwnerId))
+                    dest.CommentOwnerId, opt =>
+                    opt.MapFrom(src => src.Comment.OwnerId))
                 .ForMember(dest =>
-                    dest.Comment.PostId, opt =>
-                    opt.MapFrom(src => src.CommentPostId))
+                    dest.CommentPostId, opt =>
+                    opt.MapFrom(src => src.Comment.PostId))
 
                 .ReverseMap();
-            CreateMap<CommentRateDetailDto, CommentRate>()
+            CreateMap<CommentRate, CommentRateDetailDto>()
                 .ForMember(dest =>
-                    dest.Owner.UserName, opt =>
-                    opt.MapFrom(src => src.OwnerUserName))
+                    dest.OwnerUserName, opt =>
+                    opt.MapFrom(src => src.Owner.UserName))
                 .ForMember(dest =>
-                    dest.Owner.Id, opt =>
-                    opt.MapFrom(src => src.OwnerId))
+                    dest.OwnerId, opt =>
+                    opt.MapFrom(src => src.Owner.Id))
                 .ForMember(dest =>
-                    dest.Owner.Email, opt =>
-                    opt.MapFrom(src => src.OwnerEmail))
+                    dest.OwnerEmail, opt =>
+                    opt.MapFrom(src => src.Owner.Email))
                 .ForMember(dest =>
-                    dest.Owner.Firstname, opt =>
-                    opt.MapFrom(src => src.OwnerFirstname))
+                    dest.OwnerFirstname, opt =>
+                    opt.MapFrom(src => src.Owner.Firstname))
                 .ForMember(dest =>
-                    dest.Owner.Lastname, opt =>
-                    opt.MapFrom(src => src.OwnerLastname))
+                    dest.OwnerLastname, opt =>
+                    opt.MapFrom(src => src.Owner.Lastname))
                 .ForMember(dest =>
-                    dest.Comment.CommentBody, opt =>
-                    opt.MapFrom(src => src.CommentBody))
+                    dest.CommentBody, opt =>
+                    opt.MapFrom(src => src.Comment.CommentBody))
                 .ForMember(dest =>
-                    dest.Comment.CommentDate, opt =>
-                    opt.MapFrom(src => src.CommentDate))
+                    dest.CommentDate, opt =>
+                    opt.MapFrom(src => src.Comment.CommentDate))
                 .ForMember(dest =>
-                    dest.Comment.OwnerId, opt =>
-                    opt.MapFrom(src => src.CommentOwnerId))
+                    dest.CommentOwnerId, opt =>
+                    opt.MapFrom(src => src.Comment.OwnerId))
                 .ForMember(dest =>
-                    dest.Comment.PostId, opt =>
-                    opt.MapFrom(src => src.CommentPostId))
+                    dest.CommentPostId, opt =>
+                    opt.MapFrom(src => src.Comment.PostId))
                 .ReverseMap();
             CreateMap<CommentRateUpdateDto, CommentRate>().ReverseMap();
         }

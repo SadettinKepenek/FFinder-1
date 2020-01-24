@@ -16,36 +16,36 @@ namespace FFinder.MappingProfiles
 
 
             CreateMap<CommentListDto, Comment>()
-                .ForMember(dest => 
+                .ForPath(dest => 
                     dest.Owner.UserName, opt => 
                     opt.MapFrom(src => src.OwnerUserName))
-                .ForMember(dest =>
+                .ForPath(dest =>
                     dest.Owner.Id, opt =>
                     opt.MapFrom(src => src.OwnerId))
-                .ForMember(dest =>
+                .ForPath(dest =>
                     dest.Owner.Email, opt =>
                     opt.MapFrom(src => src.OwnerEmail))
-                .ForMember(dest =>
+                .ForPath(dest =>
                     dest.Owner.Firstname, opt =>
                     opt.MapFrom(src => src.OwnerFirstname))
-                .ForMember(dest =>
+                .ForPath(dest =>
                     dest.Owner.Lastname, opt =>
                     opt.MapFrom(src => src.OwnerLastname))
                 .ReverseMap();
             CreateMap<CommentDetailDto, Comment>()
-                .ForMember(dest =>
+                .ForPath(dest =>
                     dest.Owner.UserName, opt =>
                     opt.MapFrom(src => src.OwnerUserName))
-                .ForMember(dest =>
+                .ForPath(dest =>
                     dest.Owner.Id, opt =>
                     opt.MapFrom(src => src.OwnerId))
-                .ForMember(dest =>
+                .ForPath(dest =>
                     dest.Owner.Email, opt =>
                     opt.MapFrom(src => src.OwnerEmail))
-                .ForMember(dest =>
+                .ForPath(dest =>
                     dest.Owner.Firstname, opt =>
                     opt.MapFrom(src => src.OwnerFirstname))
-                .ForMember(dest =>
+                .ForPath(dest =>
                     dest.Owner.Lastname, opt =>
                     opt.MapFrom(src => src.OwnerLastname))
                 .ReverseMap();
