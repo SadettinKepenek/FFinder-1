@@ -13,8 +13,8 @@ namespace FFinder.MappingProfiles
         public CommentMappingProfile()
         {
             CreateMap<CommentAddDto, Comment>().ReverseMap();
-            CreateMap<CommentListDto, Comment>();
-            CreateMap<CommentDetailDto, Comment>();
+            CreateMap<CommentListDto, Comment>().ReverseMap();
+            CreateMap<CommentDetailDto, Comment>().ReverseMap();
             CreateMap<CommentUpdateDto, Comment>().ReverseMap();
         }
     }
