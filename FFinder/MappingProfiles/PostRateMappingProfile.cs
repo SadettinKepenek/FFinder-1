@@ -10,71 +10,70 @@ namespace FFinder.MappingProfiles
         {
             CreateMap<PostRateAddDto, PostRate>();
             CreateMap<PostRateUpdateDto, PostRate>();
-            CreateMap<PostRateListDto, PostRate>()
+            CreateMap<PostRate, PostRateListDto>()
                 .ForMember(dest =>
-                    dest.Owner.UserName, opt =>
-                    opt.MapFrom(src => src.OwnerUserName))
+                    dest.OwnerUserName, opt =>
+                    opt.MapFrom(src => src.Owner.UserName))
                 .ForMember(dest =>
-                    dest.Owner.Id, opt =>
-                    opt.MapFrom(src => src.OwnerId))
+                    dest.OwnerId, opt =>
+                    opt.MapFrom(src => src.Owner.Id))
                 .ForMember(dest =>
-                    dest.Owner.Email, opt =>
-                    opt.MapFrom(src => src.OwnerEmail))
+                    dest.OwnerEmail, opt =>
+                    opt.MapFrom(src => src.Owner.Email))
                 .ForMember(dest =>
-                    dest.Owner.Firstname, opt =>
-                    opt.MapFrom(src => src.OwnerFirstname))
+                    dest.OwnerFirstname, opt =>
+                    opt.MapFrom(src => src.Owner.Firstname))
                 .ForMember(dest =>
-                    dest.Owner.Lastname, opt =>
-                    opt.MapFrom(src => src.OwnerLastname))
+                    dest.OwnerLastname, opt =>
+                    opt.MapFrom(src => src.Owner.Lastname))
                 .ForMember(dest =>
-                    dest.Post.PostBody, opt =>
-                    opt.MapFrom(src => src.PostBody))
+                    dest.PostBody, opt =>
+                    opt.MapFrom(src => src.Post.PostBody))
                 .ForMember(dest =>
-                    dest.Post.PostImageUrl, opt =>
-                    opt.MapFrom(src => src.PostImageUrl))
+                    dest.PostImageUrl, opt =>
+                    opt.MapFrom(src => src.Post.PostImageUrl))
                 .ForMember(dest =>
-                    dest.Post.IsActive, opt =>
-                    opt.MapFrom(src => src.PostIsActive))
+                    dest.IsActive, opt =>
+                    opt.MapFrom(src => src.Post.IsActive))
                 .ForMember(dest =>
-                    dest.Post.OwnerId, opt =>
-                    opt.MapFrom(src => src.PostOwnerId))
+                    dest.OwnerId, opt =>
+                    opt.MapFrom(src => src.Post.OwnerId))
                 .ForMember(dest =>
-                    dest.Post.PublishDate, opt =>
-                    opt.MapFrom(src => src.PostPublishDate))
+                    dest.PostPublishDate, opt =>
+                    opt.MapFrom(src => src.Post.PublishDate))
 
                 .ReverseMap();
-            CreateMap<PostRateDetailDto, PostRate>()
+            CreateMap<PostRate, PostRateDetailDto>()
+                 .ForMember(dest =>
+                    dest.OwnerUserName, opt =>
+                    opt.MapFrom(src => src.Owner.UserName))
                 .ForMember(dest =>
-                    dest.Owner.UserName, opt =>
-                    opt.MapFrom(src => src.OwnerUserName))
+                    dest.OwnerId, opt =>
+                    opt.MapFrom(src => src.Owner.Id))
                 .ForMember(dest =>
-                    dest.Owner.Id, opt =>
-                    opt.MapFrom(src => src.OwnerId))
+                    dest.OwnerEmail, opt =>
+                    opt.MapFrom(src => src.Owner.Email))
                 .ForMember(dest =>
-                    dest.Owner.Email, opt =>
-                    opt.MapFrom(src => src.OwnerEmail))
+                    dest.OwnerFirstname, opt =>
+                    opt.MapFrom(src => src.Owner.Firstname))
                 .ForMember(dest =>
-                    dest.Owner.Firstname, opt =>
-                    opt.MapFrom(src => src.OwnerFirstname))
+                    dest.OwnerLastname, opt =>
+                    opt.MapFrom(src => src.Owner.Lastname))
                 .ForMember(dest =>
-                    dest.Owner.Lastname, opt =>
-                    opt.MapFrom(src => src.OwnerLastname))
+                    dest.PostBody, opt =>
+                    opt.MapFrom(src => src.Post.PostBody))
                 .ForMember(dest =>
-                    dest.Post.PostBody, opt =>
-                    opt.MapFrom(src => src.PostBody))
+                    dest.PostImageUrl, opt =>
+                    opt.MapFrom(src => src.Post.PostImageUrl))
                 .ForMember(dest =>
-                    dest.Post.PostImageUrl, opt =>
-                    opt.MapFrom(src => src.PostImageUrl))
+                    dest.IsActive, opt =>
+                    opt.MapFrom(src => src.Post.IsActive))
                 .ForMember(dest =>
-                    dest.Post.IsActive, opt =>
-                    opt.MapFrom(src => src.PostIsActive))
+                    dest.OwnerId, opt =>
+                    opt.MapFrom(src => src.Post.OwnerId))
                 .ForMember(dest =>
-                    dest.Post.OwnerId, opt =>
-                    opt.MapFrom(src => src.PostOwnerId))
-                .ForMember(dest =>
-                    dest.Post.PublishDate, opt =>
-                    opt.MapFrom(src => src.PostPublishDate))
-                .ReverseMap();
+                    dest.PostPublishDate, opt =>
+                    opt.MapFrom(src => src.Post.PublishDate)).ReverseMap();
         }
     }
 }

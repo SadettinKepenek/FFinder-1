@@ -10,12 +10,12 @@ namespace FFinder.MappingProfiles
         {
             CreateMap<PostAddDto, Post>();
             CreateMap<PostUpdateDto, Post>();
-            CreateMap<PostListDto, Post>()
+            CreateMap<Post, PostListDto>()
                 .ForMember(c=> c.Owner.UserName,d=> d.MapFrom(e => e.Owner.UserName))               
                 .ForMember(c=> c.Owner.Id,d=> d.MapFrom(e => e.Owner.Id))
                 .ForMember(c=> c.Owner.ProfilePhotoUrl,d=> d.MapFrom(e => e.Owner.ProfilePhotoUrl))
                 .ReverseMap();
-            CreateMap<PostDetailDto, Post>()
+            CreateMap<Post, PostDetailDto>()
                .ForMember(c => c.Owner.UserName, d => d.MapFrom(e => e.Owner.UserName))
                .ForMember(c => c.Owner.Id, d => d.MapFrom(e => e.Owner.Id))
                .ForMember(c => c.Owner.ProfilePhotoUrl, d => d.MapFrom(e => e.Owner.ProfilePhotoUrl))
