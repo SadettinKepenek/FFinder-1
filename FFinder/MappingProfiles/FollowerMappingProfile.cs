@@ -10,58 +10,58 @@ namespace FFinder.MappingProfiles
         {
             CreateMap<FollowerAddDto, Follower>();
             CreateMap<FollowerUpdateDto, Follower>();
-            CreateMap<FollowerDetailDto, Follower>()
+            CreateMap<Follower, FollowerDetailDto>()
 
                 .ForMember(dest =>
-                    dest.User1.Email, opt =>
-                    opt.MapFrom(src => src.User1Email))
+                    dest.User1Email, opt =>
+                    opt.MapFrom(src => src.User1.Email))
                 .ForMember(dest =>
-                    dest.User1.Firstname, opt =>
-                    opt.MapFrom(src => src.User1Firstname))
+                    dest.User1Firstname, opt =>
+                    opt.MapFrom(src => src.User1.Firstname))
                 .ForMember(dest =>
-                    dest.User1.Lastname, opt =>
-                    opt.MapFrom(src => src.User1Lastname))
+                    dest.User1Lastname, opt =>
+                    opt.MapFrom(src => src.User1.Lastname))
                 .ForMember(dest =>
-                    dest.User1.UserName, opt =>
-                    opt.MapFrom(src => src.User1UserName))
+                    dest.User1UserName, opt =>
+                    opt.MapFrom(src => src.User1.UserName))
                 .ForMember(dest =>
-                    dest.User2.Email, opt =>
-                    opt.MapFrom(src => src.User2Email))
+                    dest.User2Email, opt =>
+                    opt.MapFrom(src => src.User2.Email))
                 .ForMember(dest =>
-                    dest.User2.Firstname, opt =>
-                    opt.MapFrom(src => src.User2Firstname))
+                    dest.User2Firstname, opt =>
+                    opt.MapFrom(src => src.User2.Firstname))
                 .ForMember(dest =>
-                    dest.User2.Lastname, opt =>
-                    opt.MapFrom(src => src.User2Lastname))
+                    dest.User2Lastname, opt =>
+                    opt.MapFrom(src => src.User2.Lastname))
                 .ForMember(dest =>
-                    dest.User2.UserName, opt =>
-                    opt.MapFrom(src => src.User2UserName))
+                    dest.User2UserName, opt =>
+                    opt.MapFrom(src => src.User2.UserName))
                 .ReverseMap();
-            CreateMap<FollowerListDto, Follower>()
+            CreateMap<Follower, FollowerListDto>()
                 .ForMember(dest =>
-                    dest.User1.Email, opt =>
-                    opt.MapFrom(src => src.User1Email))
+                    dest.User1Email, opt =>
+                    opt.MapFrom(src => src.User1.Email))
                 .ForMember(dest =>
-                    dest.User1.Firstname, opt =>
-                    opt.MapFrom(src => src.User1Firstname))
+                    dest.User1Firstname, opt =>
+                    opt.MapFrom(src => src.User1.Firstname))
                 .ForMember(dest =>
-                    dest.User1.Lastname, opt =>
-                    opt.MapFrom(src => src.User1Lastname))
+                    dest.User1Lastname, opt =>
+                    opt.MapFrom(src => src.User1.Lastname))
                 .ForMember(dest =>
-                    dest.User1.UserName, opt =>
-                    opt.MapFrom(src => src.User1UserName))
+                    dest.User1UserName, opt =>
+                    opt.MapFrom(src => src.User1.UserName))
                 .ForMember(dest =>
-                    dest.User2.Email, opt =>
-                    opt.MapFrom(src => src.User2Email))
+                    dest.User2Email, opt =>
+                    opt.MapFrom(src => src.User2.Email))
                 .ForMember(dest =>
-                    dest.User2.Firstname, opt =>
-                    opt.MapFrom(src => src.User2Firstname))
+                    dest.User2Firstname, opt =>
+                    opt.MapFrom(src => src.User2.Firstname))
                 .ForMember(dest =>
-                    dest.User2.Lastname, opt =>
-                    opt.MapFrom(src => src.User2Lastname))
+                    dest.User2Lastname, opt =>
+                    opt.MapFrom(src => src.User2.Lastname))
                 .ForMember(dest =>
-                    dest.User2.UserName, opt =>
-                    opt.MapFrom(src => src.User2UserName))
+                    dest.User2UserName, opt =>
+                    opt.MapFrom(src => src.User2.UserName))
                 .ReverseMap();
         }
     }
