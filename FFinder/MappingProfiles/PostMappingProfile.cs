@@ -11,14 +11,16 @@ namespace FFinder.MappingProfiles
             CreateMap<PostAddDto, Post>();
             CreateMap<PostUpdateDto, Post>();
             CreateMap<Post, PostListDto>()
-                .ForMember(c=> c.Owner.UserName,d=> d.MapFrom(e => e.Owner.UserName))               
-                .ForMember(c=> c.Owner.Id,d=> d.MapFrom(e => e.Owner.Id))
-                .ForMember(c=> c.Owner.ProfilePhotoUrl,d=> d.MapFrom(e => e.Owner.ProfilePhotoUrl))
+                .ForMember(c=> c.OwnerUserName,d=> d.MapFrom(e => e.Owner.UserName))               
+                .ForMember(c=> c.OwnerFirstname,d=> d.MapFrom(e => e.Owner.Firstname))
+                .ForMember(c=> c.OwnerLastname,d=> d.MapFrom(e => e.Owner.Lastname))
+                .ForMember(c=> c.OwnerEmail,d=> d.MapFrom(e => e.Owner.Email))
                 .ReverseMap();
             CreateMap<Post, PostDetailDto>()
-               .ForMember(c => c.Owner.UserName, d => d.MapFrom(e => e.Owner.UserName))
-               .ForMember(c => c.Owner.Id, d => d.MapFrom(e => e.Owner.Id))
-               .ForMember(c => c.Owner.ProfilePhotoUrl, d => d.MapFrom(e => e.Owner.ProfilePhotoUrl))
+                .ForMember(c => c.OwnerUserName, d => d.MapFrom(e => e.Owner.UserName))
+                .ForMember(c => c.OwnerFirstname, d => d.MapFrom(e => e.Owner.Firstname))
+                .ForMember(c => c.OwnerLastname, d => d.MapFrom(e => e.Owner.Lastname))
+                .ForMember(c => c.OwnerEmail, d => d.MapFrom(e => e.Owner.Email))
                .ReverseMap();
         }
     }
