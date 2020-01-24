@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FFinder.Core.DataTransferObjects.Comment;
+using FFinder.Core.DataTransferObjects.CommentRate;
+using FFinder.Core.DataTransferObjects.Follower;
+using FFinder.Core.DataTransferObjects.Post;
+using FFinder.Core.DataTransferObjects.PostRate;
 
 namespace FFinder.Core.DataTransferObjects.User
 {
@@ -25,10 +30,11 @@ namespace FFinder.Core.DataTransferObjects.User
         public string Country { get; set; }
         public string School { get; set; }
         public bool IsActive { get; set; }
-        public virtual ICollection<Entity.Concrete.Follower> Followers { get; set; }
-        public virtual ICollection<Entity.Concrete.Comment> Comments { get; set; }
-        public virtual ICollection<Entity.Concrete.Post> Posts { get; set; }
-        public virtual ICollection<Entity.Concrete.PostRate> PostRates { get; set; }
-        public virtual ICollection<Entity.Concrete.CommentRate> CommentRates { get; set; }
+
+        public virtual ICollection<FollowerListDto> Followers { get; set; }
+        public virtual ICollection<CommentListDto> Comments { get; set; }
+        public virtual ICollection<PostListDto> Posts { get; set; }
+        public virtual ICollection<PostRateListDto> PostRates { get; set; }
+        public virtual ICollection<CommentRateListDto> CommentRates { get; set; }
     }
 }
