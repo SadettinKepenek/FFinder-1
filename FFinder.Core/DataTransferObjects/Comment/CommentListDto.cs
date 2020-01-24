@@ -17,7 +17,6 @@ namespace FFinder.Core.DataTransferObjects.Comment
         public string OwnerId { get; set; }
         public string PostId { get; set; }
         public virtual UserListDto Owner { get; set; }
-        public virtual PostListDto Post { get; set; }
         public virtual ICollection<CommentRateDetailDto> Rates { get; set; }
         public bool IsActive { get; set; }
     }
