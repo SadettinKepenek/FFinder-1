@@ -15,7 +15,7 @@ namespace FFinder.DAL.Concrete.EntityFramework
 
 
 
-        Post IEntityRepository<Post>.Get(Expression<Func<Post, bool>> filter)
+        public Post Get(Expression<Func<Post, bool>> filter)
         {
             using SqlDbContext context = new SqlDbContext();
             return filter == null ? context.Post
@@ -34,7 +34,7 @@ namespace FFinder.DAL.Concrete.EntityFramework
                 ;
         }
 
-        List<Post> IEntityRepository<Post>.GetList(Expression<Func<Post, bool>> filter)
+        public List<Post> GetList(Expression<Func<Post, bool>> filter)
         {
             using SqlDbContext context = new SqlDbContext();
             return filter == null ? context.Post.Include(x => x.Owner)
