@@ -26,6 +26,7 @@ namespace FFinder.MappingProfiles
                 .ForMember(dest =>
                     dest.OwnerLastname, opt =>
                     opt.MapFrom(src => src.Owner.Lastname))
+         
                 .ForMember(dest =>
                     dest.PostBody, opt =>
                     opt.MapFrom(src => src.Post.PostBody))
@@ -41,7 +42,12 @@ namespace FFinder.MappingProfiles
                 .ForMember(dest =>
                     dest.PostPublishDate, opt =>
                     opt.MapFrom(src => src.Post.PublishDate))
-
+                .ForMember(dest =>
+                    dest.PostOwnerProfilePhoto, opt =>
+                    opt.MapFrom(src => src.Post.Owner.ProfilePhotoUrl))
+                .ForMember(dest =>
+                    dest.OwnerProfilePhoto, opt =>
+                    opt.MapFrom(src => src.Owner.ProfilePhotoUrl))
                 .ReverseMap();
             CreateMap<PostRate, PostRateDetailDto>()
                  .ForMember(dest =>
@@ -73,7 +79,14 @@ namespace FFinder.MappingProfiles
                     opt.MapFrom(src => src.Post.OwnerId))
                 .ForMember(dest =>
                     dest.PostPublishDate, opt =>
-                    opt.MapFrom(src => src.Post.PublishDate)).ReverseMap();
+                    opt.MapFrom(src => src.Post.PublishDate))
+                 .ForMember(dest =>
+                     dest.PostOwnerProfilePhoto, opt =>
+                     opt.MapFrom(src => src.Post.Owner.ProfilePhotoUrl))
+                 .ForMember(dest =>
+                     dest.OwnerProfilePhoto, opt =>
+                     opt.MapFrom(src => src.Owner.ProfilePhotoUrl))
+                 .ReverseMap();
         }
     }
 }

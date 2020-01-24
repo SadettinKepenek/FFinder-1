@@ -19,6 +19,8 @@ namespace FFinder.Core.DataTransferObjects.Post
         public string OwnerEmail { get; set; }
         public string OwnerFirstname { get; set; }
         public string OwnerLastname { get; set; }
+        public string OwnerProfilePhoto { get; set; }
+
         public virtual ICollection<CommentListDto> Comments { get; set; }
         public virtual ICollection<PostRateListDto> Rates { get; set; }
     }

@@ -20,6 +20,8 @@ namespace FFinder.Core.DataTransferObjects.Comment
         public string OwnerEmail { get; set; }
         public string OwnerFirstname { get; set; }
         public string OwnerLastname { get; set; }
+        public string OwnerProfilePhoto { get; set; }
+
         public virtual PostListDto Post { get; set; }
         public virtual ICollection<CommentRateListDto> Rates { get; set; }
         public bool IsActive { get; set; }

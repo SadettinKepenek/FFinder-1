@@ -30,6 +30,9 @@ namespace FFinder.MappingProfiles
                     dest.OwnerLastname, opt =>
                     opt.MapFrom(src => src.Owner.Lastname))
                 .ForMember(dest =>
+                    dest.OwnerProfilePhoto, opt =>
+                    opt.MapFrom(src => src.Owner.ProfilePhotoUrl))
+                .ForMember(dest =>
                     dest.CommentBody, opt =>
                     opt.MapFrom(src => src.Comment.CommentBody))
                 .ForMember(dest =>
@@ -71,6 +74,9 @@ namespace FFinder.MappingProfiles
                 .ForMember(dest =>
                     dest.CommentPostId, opt =>
                     opt.MapFrom(src => src.Comment.PostId))
+                .ForMember(dest =>
+                    dest.OwnerProfilePhoto, opt =>
+                    opt.MapFrom(src => src.Owner.ProfilePhotoUrl))
                 .ReverseMap();
             CreateMap<CommentRateUpdateDto, CommentRate>().ReverseMap();
         }

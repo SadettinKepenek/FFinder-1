@@ -16,11 +16,14 @@ namespace FFinder.Core.DataTransferObjects.Follower
         public string User1Email { get; set; }
         public string User1Firstname { get; set; }
         public string User1Lastname { get; set; }
+        public string User1ProfilePhoto { get; set; }
 
         public string User2UserName { get; set; }
         public string User2Email { get; set; }
         public string User2Firstname { get; set; }
         public string User2Lastname { get; set; }
+        public string User2ProfilePhoto { get; set; }
+
 
 
     }

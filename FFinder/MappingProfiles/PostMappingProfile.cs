@@ -15,11 +15,14 @@ namespace FFinder.MappingProfiles
                 .ForMember(c=> c.OwnerFirstname,d=> d.MapFrom(e => e.Owner.Firstname))
                 .ForMember(c=> c.OwnerLastname,d=> d.MapFrom(e => e.Owner.Lastname))
                 .ForMember(c=> c.OwnerEmail,d=> d.MapFrom(e => e.Owner.Email))
+                .ForMember(c=> c.OwnerProfilePhoto,d=> d.MapFrom(e => e.Owner.ProfilePhotoUrl))
+               
                 .ReverseMap();
             CreateMap<Post, PostDetailDto>()
                 .ForMember(c => c.OwnerUserName, d => d.MapFrom(e => e.Owner.UserName))
                 .ForMember(c => c.OwnerFirstname, d => d.MapFrom(e => e.Owner.Firstname))
                 .ForMember(c => c.OwnerLastname, d => d.MapFrom(e => e.Owner.Lastname))
+                .ForMember(c => c.OwnerProfilePhoto, d => d.MapFrom(e => e.Owner.ProfilePhotoUrl))
                 .ForMember(c => c.OwnerEmail, d => d.MapFrom(e => e.Owner.Email))
                .ReverseMap();
         }

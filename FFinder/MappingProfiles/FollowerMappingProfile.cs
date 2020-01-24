@@ -36,6 +36,12 @@ namespace FFinder.MappingProfiles
                 .ForMember(dest =>
                     dest.User2UserName, opt =>
                     opt.MapFrom(src => src.User2.UserName))
+                .ForMember(dest =>
+                    dest.User1ProfilePhoto, opt =>
+                    opt.MapFrom(src => src.User1.ProfilePhotoUrl))
+                .ForMember(dest =>
+                    dest.User2ProfilePhoto, opt =>
+                    opt.MapFrom(src => src.User2.ProfilePhotoUrl))
                 .ReverseMap();
             CreateMap<Follower, FollowerListDto>()
                 .ForMember(dest =>
@@ -62,6 +68,12 @@ namespace FFinder.MappingProfiles
                 .ForMember(dest =>
                     dest.User2UserName, opt =>
                     opt.MapFrom(src => src.User2.UserName))
+                .ForMember(dest =>
+                    dest.User1ProfilePhoto, opt =>
+                    opt.MapFrom(src => src.User1.ProfilePhotoUrl))
+                .ForMember(dest =>
+                    dest.User2ProfilePhoto, opt =>
+                    opt.MapFrom(src => src.User2.ProfilePhotoUrl))
                 .ReverseMap();
         }
     }

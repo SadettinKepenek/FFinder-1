@@ -18,6 +18,8 @@ namespace FFinder.Core.DataTransferObjects.CommentRate
         public string OwnerEmail { get; set; }
         public string OwnerFirstname { get; set; }
         public string OwnerLastname { get; set; }
+        public string OwnerProfilePhoto { get; set; }
+
         public string CommentBody { get; set; }
         public DateTime CommentDate { get; set; }
         public string CommentOwnerId { get; set; }
