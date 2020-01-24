@@ -15,7 +15,15 @@ namespace FFinder.Core.DataTransferObjects.CommentRate
         public string CommentId { get; set; }
         public string OwnerId { get; set; }
         public bool IsActive { get; set; }
-        public virtual UserListDto Owner { get; set; }
-        public virtual CommentListDto Comment { get; set; }
+        public string OwnerUserName { get; set; }
+        public string OwnerEmail { get; set; }
+        public string OwnerFirstname { get; set; }
+        public string OwnerLastname { get; set; }
+
+        public string CommentBody { get; set; }
+        public DateTime CommentDate { get; set; }
+        public string CommentOwnerId { get; set; }
+        public string CommentPostId { get; set; }
+
     }
 }

@@ -13,7 +13,15 @@ namespace FFinder.Core.DataTransferObjects.PostRate
         public string PostId { get; set; }
         public string OwnerId { get; set; }
         public bool IsActive { get; set; }
-        public virtual UserListDto Owner { get; set; }
-        public virtual PostListDto Post { get; set; }
+        public string OwnerUserName { get; set; }
+        public string OwnerEmail { get; set; }
+        public string OwnerFirstname { get; set; }
+        public string OwnerLastname { get; set; }
+
+        public string PostImageUrl { get; set; }
+        public string PostBody { get; set; }
+        public DateTime PostPublishDate { get; set; }
+        public string PostOwnerId { get; set; }
+        public bool PostIsActive { get; set; }
     }
 }
