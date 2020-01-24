@@ -40,7 +40,7 @@ namespace FFinder.Controllers
             return Ok(responseModelWithData);
         }
         [HttpGet("GetById")]
-        public async Task<IActionResult> GetById([FromBody] string id)
+        public async Task<IActionResult> GetById(string id)
         {
             var entities = _postService.GetById(id);
             if (entities == null)
