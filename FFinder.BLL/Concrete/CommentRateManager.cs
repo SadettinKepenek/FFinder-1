@@ -40,7 +40,7 @@ namespace FFinder.BLL.Concrete
             }
         }
 
-        public void Delete(string id)
+        public void Delete(string id,string ownerId)
         {
             try
             {
@@ -48,7 +48,9 @@ namespace FFinder.BLL.Concrete
                 {
                     throw new NullReferenceException("id null olamaz");
                 }
-                _commentRateDal.Delete(new CommentRate {CommentRateId = id });
+
+                var delete = _commentRateDal.Get(x => x.OwnerId == ownerId && x.CommentId == id);
+                _commentRateDal.Delete(delete);
             }
             catch (Exception e)
             {

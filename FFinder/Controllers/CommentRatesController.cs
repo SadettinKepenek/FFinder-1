@@ -109,8 +109,8 @@ namespace FFinder.Controllers
                 });
             }
         }
-        [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] string id)
+        [HttpDelete("Delete/{id}/{ownerId}")]
+        public async Task<IActionResult> Delete(string id,string ownerId)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace FFinder.Controllers
                 {
                     return Unauthorized("Erişim kısıtlandırıldı.");
                 }
-                _commentRateService.Delete(id);
+                _commentRateService.Delete(id,ownerId);
                 return Ok(new HttpResponseModelSimple
                 {
                     StatusCode = 200,
