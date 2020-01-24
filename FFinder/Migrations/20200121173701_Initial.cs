@@ -185,6 +185,11 @@ namespace FFinder.Migrations
                         name: "FK_Followers_User",
                         column: x => x.User1Id,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Follower_AspNetUsers_User2Id",
+                        column: x => x.User2Id,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -196,7 +201,7 @@ namespace FFinder.Migrations
                     PostId = table.Column<string>(nullable: false, defaultValueSql: "NEWID()"),
                     PostImageUrl = table.Column<string>(maxLength: 250, nullable: false),
                     PostBody = table.Column<string>(maxLength: 250, nullable: false),
-                    datetime = table.Column<DateTime>(maxLength: 250, nullable: false),
+                    PublishDate = table.Column<DateTime>(type: "datetime", maxLength: 250, nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     OwnerId = table.Column<string>(maxLength: 450, nullable: false)
                 },
@@ -216,7 +221,7 @@ namespace FFinder.Migrations
                 {
                     CommentId = table.Column<string>(nullable: false, defaultValueSql: "NEWID()"),
                     CommentBody = table.Column<string>(maxLength: 250, nullable: false),
-                    datetime = table.Column<DateTime>(maxLength: 250, nullable: false),
+                    CommentDate = table.Column<DateTime>(type: "datetime", maxLength: 250, nullable: false),
                     OwnerId = table.Column<string>(maxLength: 450, nullable: false),
                     PostId = table.Column<string>(maxLength: 450, nullable: false),
                     IsActive = table.Column<bool>(nullable: false)
@@ -242,7 +247,7 @@ namespace FFinder.Migrations
                 {
                     PostRateId = table.Column<string>(nullable: false, defaultValueSql: "NEWID()"),
                     IsLike = table.Column<bool>(nullable: false),
-                    datetime = table.Column<DateTime>(maxLength: 250, nullable: false),
+                    RateDate = table.Column<DateTime>(type: "datetime", maxLength: 250, nullable: false),
                     PostId = table.Column<string>(maxLength: 450, nullable: false),
                     OwnerId = table.Column<string>(maxLength: 450, nullable: false),
                     IsActive = table.Column<bool>(nullable: false)
@@ -268,7 +273,7 @@ namespace FFinder.Migrations
                 {
                     CommentRateId = table.Column<string>(nullable: false, defaultValueSql: "NEWID()"),
                     IsLike = table.Column<bool>(nullable: false),
-                    datetime = table.Column<DateTime>(maxLength: 250, nullable: false),
+                    RateDate = table.Column<DateTime>(type: "datetime", maxLength: 250, nullable: false),
                     CommentId = table.Column<string>(maxLength: 450, nullable: false),
                     OwnerId = table.Column<string>(maxLength: 450, nullable: false),
                     IsActive = table.Column<bool>(maxLength: 250, nullable: false)
@@ -351,6 +356,11 @@ namespace FFinder.Migrations
                 name: "IX_Follower_User1Id",
                 table: "Follower",
                 column: "User1Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Follower_User2Id",
+                table: "Follower",
+                column: "User2Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Post_OwnerId",

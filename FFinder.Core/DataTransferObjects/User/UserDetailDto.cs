@@ -25,10 +25,10 @@ namespace FFinder.Core.DataTransferObjects.User
         public string Country { get; set; }
         public string School { get; set; }
         public bool IsActive { get; set; }
-        public virtual ICollection<Entity.Concrete.Follower> Followers { get; set; }
-        public virtual ICollection<Entity.Concrete.Comment> Comments { get; set; }
-        public virtual ICollection<Entity.Concrete.Post> Posts { get; set; }
-        public virtual ICollection<Entity.Concrete.PostRate> PostRates { get; set; }
-        public virtual ICollection<Entity.Concrete.CommentRate> CommentRates { get; set; }
+        public virtual ICollection<Entity.Concrete.Follower> Follower { get; set; }
+        public virtual ICollection<Entity.Concrete.Comment> Comment { get; set; }
+        public virtual ICollection<Entity.Concrete.Post> Post { get; set; }
+        public virtual ICollection<Entity.Concrete.PostRate> PostRate { get; set; }
+        public virtual ICollection<Entity.Concrete.CommentRate> CommentRate { get; set; }
     }
 }

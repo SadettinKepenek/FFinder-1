@@ -38,10 +38,23 @@ namespace FFinder.BLL.Concrete
         {
             try
             {
+
+
                 var validator = new PostRateAddValidator();
                 var result = validator.Validate(dto);
                 if (!result.IsValid)
                     throw new ValidationException(result.ToString());
+
+
+                var existOne = _postRateRepository.Get(x => x.OwnerId == dto.OwnerId && x.PostId == dto.PostId);
+                if (existOne != null)
+                {
+                    if (existOne.IsLike && dto.IsLike)
+                        return;
+                    if (!existOne.IsLike && !dto.IsLike)
+                        return;
+                    _postRateRepository.Delete(existOne);
+                }
                 var entity = _mapper.Map<PostRate>(dto);
                 _postRateRepository.Add(entity);
             }
@@ -68,16 +81,19 @@ namespace FFinder.BLL.Concrete
             }
         }
 
-        public void Delete(string id)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ownerId">Rate sahibi</param>
+        /// <param name="postId">Post Id</param>
+        public void Delete(string ownerId,string postId)
         {
             try
             {
-                if (String.IsNullOrEmpty(id))
+                if (String.IsNullOrEmpty(ownerId))
                     throw new ValidationException("Id boş geçilemez");
-                _postRateRepository.Delete(new PostRate
-                {
-                    PostRateId = id
-                });
+                var postRate = _postRateRepository.Get(x => x.OwnerId == ownerId && x.PostId == postId);
+                _postRateRepository.Delete(postRate);
             }
             catch (Exception e)
             {
