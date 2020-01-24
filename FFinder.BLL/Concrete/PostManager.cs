@@ -86,7 +86,7 @@ namespace FFinder.BLL.Concrete
                 {
                     throw new NullReferenceException("id null olamaz");
                 }
-                var post = _postRepository.GetList(x => x.PostId == id);
+                var post = _postRepository.Get(x => x.PostId == id);
                 if (post == null)
                 {
                     throw new ArgumentNullException("Post Bulunamadı");
