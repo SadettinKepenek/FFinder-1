@@ -79,7 +79,7 @@ namespace FFinder.Controllers
         }
 
         [Authorize]
-        [HttpGet]
+        [HttpGet("{userName?}")]
         public async Task<IActionResult> GetMyProfile(string userName=null)
         {
 
