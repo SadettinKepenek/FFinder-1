@@ -124,13 +124,13 @@ namespace FFinder
                     };
                 });
 
-            services.AddDistributedSqlServerCache(options =>
-                {
-                    options.ConnectionString = Configuration.GetConnectionString("FFinder");
-                    options.SchemaName = "dbo";
-                    options.TableName = "FFinderCache";
+            //services.AddDistributedSqlServerCache(options =>
+            //    {
+            //        options.ConnectionString = Configuration.GetConnectionString("FFinder");
+            //        options.SchemaName = "dbo";
+            //        options.TableName = "FFinderCache";
 
-                });
+            //    });
 
         }
 
