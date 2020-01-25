@@ -224,6 +224,28 @@ namespace FFinder.BLL.Concrete
             var mappedUser = _mapper.Map<UserDetailDto>(dbUser);
             return mappedUser;
         }
+
+        public UserDetailDto GetUser(string userName)
+        {
+        
+
+            var dbUser = _userManager.Users.
+                Include(x => x.PostRate).
+                Include(x => x.Post).
+                Include(x => x.CommentRate).
+                Include(x => x.Comment).
+                FirstOrDefault(x => x.UserName == userName);
+
+            if (dbUser == null)
+            {
+                throw new NullReferenceException("");
+            }
+
+
+            var mappedUser = _mapper.Map<UserDetailDto>(dbUser);
+            return mappedUser;
+        }
+
         private string GenerateToken(AuthIdentityUser user, DateTime expireDate)
         {
             var tokenHandler = new JwtSecurityTokenHandler();

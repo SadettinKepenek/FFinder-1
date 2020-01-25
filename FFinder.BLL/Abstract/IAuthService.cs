@@ -13,5 +13,7 @@ namespace FFinder.BLL.Abstract
         public void Update(UserUpdateDto userUpdateModel, string password);
         public void Delete(string username);
         public UserDetailDto GetUser();
+        public UserDetailDto GetUser(string userName);
+
     }
 }

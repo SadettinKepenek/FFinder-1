@@ -80,13 +80,13 @@ namespace FFinder.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetMyProfile()
+        public async Task<IActionResult> GetMyProfile(string userName=null)
         {
 
             HttpResponseModel responseModel;
             try
             {
-                var identityUser = _authService.GetUser();
+                var identityUser =userName!=null ? _authService.GetUser(userName):_authService.GetUser();
 
                 responseModel = new HttpResponseModelData<UserDetailDto>()
                 {
