@@ -123,6 +123,15 @@ namespace FFinder
 
                     };
                 });
+
+            services.AddDistributedSqlServerCache(options =>
+                {
+                    options.ConnectionString = Configuration.GetConnectionString("FFinder");
+                    options.SchemaName = "dbo";
+                    options.TableName = "FFinderCache";
+
+                });
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
