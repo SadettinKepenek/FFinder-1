@@ -20,7 +20,7 @@ namespace FFinder.BLL.Concrete
             _commentDal = commentDal;
             _mapper = mapper;
         }
-        public void Add(CommentAddDto model)
+        public string Add(CommentAddDto model)
         {
             try
             {
@@ -31,7 +31,8 @@ namespace FFinder.BLL.Concrete
                     throw new Exception("Validation hatası");
                 }
                 var mappedPost = _mapper.Map<Comment>(model);
-                _commentDal.Add(mappedPost);
+                var id = _commentDal.Add(mappedPost);
+                return id;
             }
             catch (Exception e)
             {
@@ -48,8 +49,8 @@ namespace FFinder.BLL.Concrete
                 {
                     throw new NullReferenceException("id null olamaz");
                 }
-                
-                _commentDal.Delete(new Comment { CommentId = id});
+
+                _commentDal.Delete(new Comment { CommentId = id });
             }
             catch (Exception e)
             {

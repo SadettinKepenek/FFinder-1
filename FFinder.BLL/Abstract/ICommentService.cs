@@ -9,7 +9,7 @@ namespace FFinder.BLL.Abstract
     {
         List<CommentListDto> GetAll();
         CommentDetailDto GetById(string id);
-        void Add(CommentAddDto model);
+        string Add(CommentAddDto model);
         void Update(CommentUpdateDto model);
         void Delete(string id);
     }

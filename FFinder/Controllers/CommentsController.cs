@@ -67,11 +67,11 @@ namespace FFinder.Controllers
                 {
                     return Unauthorized("Erişim kısıtlandırıldı.");
                 }
-                _commentService.Add(model);
+                var id = _commentService.Add(model);
                 return Ok(new HttpResponseModelSimple
                 {
                     StatusCode = 200,
-                    Message = "Kayıt başarıyla eklendi"
+                    Message = id
                 });
             }
             catch (Exception e)

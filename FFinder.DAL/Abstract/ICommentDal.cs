@@ -8,5 +8,7 @@ namespace FFinder.DAL.Abstract
 {
     public interface ICommentDal:IEntityRepository<Comment>
     {
+        string Add(Comment entity);
+
     }
 }

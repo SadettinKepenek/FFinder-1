@@ -29,6 +29,14 @@ namespace FFinder.DAL.Concrete.EntityFramework
                 context.Comment.Include(x => x.Rates).Include(x => x.Post).ThenInclude(y => y.Owner).ToList() :
                  context.Comment.Include(x => x.Rates).Include(x => x.Post).ThenInclude(y => y.Owner).Where(filter).ToList();
         }
+
+        public string Add(Comment entity)
+        {
+            using SqlDbContext context = new SqlDbContext();
+            context.Add(entity);
+            context.SaveChanges();
+            return entity.CommentId;
+        }
     }
 }
 
