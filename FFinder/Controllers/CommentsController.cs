@@ -6,6 +6,7 @@ using FFinder.BLL.Abstract;
 using FFinder.Core.DataTransferObjects.Comment;
 using FFinder.Extensions;
 using FFinder.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,7 @@ namespace FFinder.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CommentsController : ControllerBase
     {
         ICommentService _commentService;

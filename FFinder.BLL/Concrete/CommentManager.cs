@@ -86,7 +86,7 @@ namespace FFinder.BLL.Concrete
                 {
                     throw new NullReferenceException("id null olamaz");
                 }
-                var post = _commentDal.GetList(x => x.CommentId == id);
+                var post = _commentDal.Get(x => x.CommentId == id);
                 if (post == null)
                 {
                     throw new ArgumentNullException("Post Bulunamadı");
